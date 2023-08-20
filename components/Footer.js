@@ -43,7 +43,7 @@ export default function Footer() {
     },
   ];
   return (
-    <div className="mt-4 bg-sky-700 grid grid-cols-2 gap-6 md:grid-cols-5 sm:flex-row justify-between text-white px-10 py-6">
+    <div className="mt-0 gradient-sidebar grid grid-cols-2 gap-6 md:grid-cols-5 sm:flex-row justify-between text-white px-10 py-6">
       {footerData.map((item) => (
         <div>
           <h4 className="text-[18px] font-semibold mb-4">{item.title}</h4>

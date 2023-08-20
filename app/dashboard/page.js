@@ -5,7 +5,7 @@ import DashboardUserAds from "@/components/DashboardUserAds";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 function Page() {
-  const [activeTab, setActiveTab] = useState("adds");
+  const [activeTab, setActiveTab] = useState("ads");
   const handleActiveTab = (tab) => {
     setActiveTab(tab);
   };

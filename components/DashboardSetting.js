@@ -1,6 +1,10 @@
 "use client";
 import { useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { login } from "@/redux/features/authSlice";
+import Loading from "./LoadingSpinner";
+
 import Image from "next/image";
 import { toast } from "react-toastify";
 
@@ -17,6 +21,7 @@ function DashboardSetting() {
   const [images, setImages] = useState({
     url: userImage,
   });
+  const [isPasswordChanging, setIsPasswordChanging] = useState(false);
   const [email] = useState(user?.email);
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
@@ -24,9 +29,14 @@ function DashboardSetting() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [imageError, setImageError] = useState(false);
+  const dispatch = useDispatch();
+  const [isAccountSettingLoading, seIsAccountSettingLoading] = useState(false);
+  let isChanged = false;
+  const [isPhotoSelected, setIsPhotoSelected] = useState(false);
 
   const imageRef = useRef();
   const onImageChange = (e) => {
+    setIsPhotoSelected(true);
     const selectedFile = e.target.files[0];
     if (!selectedFile) {
       return;
@@ -42,19 +52,79 @@ function DashboardSetting() {
     setImageError(false);
   };
 
-  let isChanged = false;
   if (
     firstName !== user?.firstName ||
     lastName !== user?.lastName ||
-    images.url !== userImage
+    isPhotoSelected
   ) {
     isChanged = true;
   }
-  const handleSettingForm = (e) => {
+  const handleSettingForm = async (e) => {
     e.preventDefault();
+    if (!firstName || !lastName) {
+      return toast.error("First name and Last name must be filled", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+
+    const formData = new FormData();
+    if (user?.lastName !== lastName) formData.append("firstName", firstName);
+    if (user?.firstName !== firstName) formData.append("lastName", lastName);
+    if (images?.file) formData.append("photo", images?.file);
+
+    const requestHeaders = {
+      Authorization: `Bearer ${user.token}`,
+    };
+    seIsAccountSettingLoading(true);
+    try {
+      const { data } = await axios.patch(
+        `${baseURL}/api/v1/users/me`,
+        formData,
+        {
+          headers: requestHeaders,
+        }
+      );
+      dispatch(login({ ...data.data, token: user.token }));
+      setFirstName(data.data?.firstName);
+      setLastName(data.data.lastName);
+      setIsPhotoSelected(false);
+      toast.success("Account details updated successfully ", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Something went wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } finally {
+      seIsAccountSettingLoading(false);
+    }
   };
   const handleChangePasswordForm = async (e) => {
     e.preventDefault();
+    if (isPasswordChanging) {
+      return;
+    }
     if (!currentPassword || !confirmPassword || !newPassword) {
       return toast.error(
         "Current Password,New Password & Confirm Password must be filled",
@@ -83,15 +153,39 @@ function DashboardSetting() {
         theme: "light",
       });
     }
+    if (confirmPassword == currentPassword) {
+      return toast.error(
+        "New Password and Current Password must be different",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    }
     try {
-      const { data } = await axios.post(`${URL}/api/v1/users/updatepassword`, {
+      setIsPasswordChanging(true);
+      const requestBody = {
         passwordCurrent: currentPassword,
         password: newPassword,
         passwordConfirm: confirmPassword,
-      });
-    } catch (err) {
-      console.log(err);
-      return toast.error(err?.response?.data?.message, {
+      };
+      const requestHeaders = {
+        Authorization: `Bearer ${user.token}`,
+        "Content-Type": "application/json",
+      };
+      const { data } = await axios.post(
+        `${baseURL}/api/v1/users/updatepassword`,
+        requestBody,
+        { headers: requestHeaders }
+      );
+      dispatch(login({ ...data.user, token: data.token }));
+      toast.success("Password changed successfully ", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -101,6 +195,26 @@ function DashboardSetting() {
         progress: undefined,
         theme: "light",
       });
+      setConfirmPassword("");
+      setCurrentPassword("");
+      setNewPassword("");
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message ||
+          "Something went wrong please try again later",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    } finally {
+      setIsPasswordChanging(false);
     }
   };
   return (
@@ -169,12 +283,15 @@ function DashboardSetting() {
           </div>
         </div>
         {imageError && <p className="text-red-300">Invalid file type</p>}
-        <div className="text-right">
+        <div className="text-right flex justify-end items-center">
           <button
-            disabled={!isChanged}
-            className="uppercase disabled:bg-blue-300 bg-blue-500 text-white rounded-3xl px-8 py-3"
+            disabled={!isChanged || isAccountSettingLoading}
+            className={`uppercase items-center disabled:bg-blue-300 flex bg-blue-500 text-white rounded-3xl px-8 ${
+              isAccountSettingLoading ? "py-1" : "py-3"
+            }`}
           >
-            Save Changes
+            <span>Save Changes</span>
+            {isAccountSettingLoading && <Loading />}
           </button>
         </div>
       </form>
@@ -221,9 +338,22 @@ function DashboardSetting() {
             className="w-full border border-gray-300 rounded-lg px-3 py-3 mb-4"
           />
         </div>
-        <div className="text-right mt-4">
-          <button className="uppercase bg-blue-500 text-white rounded-3xl px-8 py-3">
-            Save Changes
+        <div className="flex w-full justify-end mt-4">
+          <button
+            disabled={
+              isPasswordChanging ||
+              !currentPassword ||
+              !confirmPassword ||
+              !newPassword
+            }
+            className={`uppercase flex items-center disabled:bg-blue-300 text-white rounded-3xl px-8  ${
+              isPasswordChanging
+                ? "py-1 rounded-full bg-blue-300"
+                : "py-3 bg-blue-500"
+            }`}
+          >
+            <span>Change Password</span>
+            {isPasswordChanging && <Loading />}
           </button>
         </div>
       </form>

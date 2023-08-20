@@ -121,16 +121,11 @@ export default function Page() {
       formData.append("bulkPrice", bulkPrice);
       formData.append("bulkSize", bulkSize);
 
-      const { data } = await axios.post(
-        `${URL}/api/v1/ads`,
-        formData,
-
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const { data } = await axios.post(`${URL}/api/v1/ads`, formData, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       if (data.status === "success") {
         setUnsavedChanges(false);
         router.push(data?.data?.data?.authorization_url ?? router.replace("/"));
@@ -201,23 +196,10 @@ export default function Page() {
     }
   }, [negotiable]);
 
-  const handleNavigation = () => {
-    const shouldLeave = window.confirm(
-      "You have unsaved changes. Are you sure you want to leave?"
-    );
-    if (shouldLeave) {
-      // router.push("/sell");
-      console.log(shouldLeave);
-    }
-    console.log(shouldLeave, "should leave");
-  };
-
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       if (unsavedChanges) {
         event.preventDefault();
-        // event.returnValue = "";
-        // handleNavigation();
         router.push("/sell");
       }
     };

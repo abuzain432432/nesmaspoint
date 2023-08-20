@@ -92,13 +92,6 @@ const UserModel = ({ isOpen, onClose }) => {
         >
           Logout
         </button>
-        {/* <button
-          className="bg-[#48AFFF] disabled:opacity-70 max-h-10 text-white rounded-lg px-4 py-2 w-full flex space-x-4 justify-center items-center"
-          onClick={handleRegister}
-          disabled={loading}
-        >
-          Register {loading && <Loading />}
-        </button> */}
       </div>
     </div>
   );

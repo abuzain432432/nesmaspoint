@@ -9,6 +9,7 @@ import Select from "react-select";
 import axios from "axios";
 import { URL } from "@/config";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "next/navigation";
 export default function Filter(props) {
   const {
     state,
@@ -21,6 +22,7 @@ export default function Filter(props) {
     setSubCategoryKeyword,
     setAdsData,
     setLoading,
+    setDisplayLocation,
   } = props;
 
   const [openDropdown, setOpenDropDown] = useState();
@@ -28,10 +30,11 @@ export default function Filter(props) {
   const [subCategory, setSubCategory] = useState();
   const [loadFetch, setLoadFetch] = useState(false);
   const [searchParams, setSearchParams] = useState("");
+  const searchQueries = useSearchParams();
 
   const [price, setPrice] = useState({ min: "", max: "" });
   const [color, setColor] = useState(null);
-
+  console.log("Search Params", searchQueries.get("category"));
   useEffect(() => {
     const selectedCategory = sidebarData.find(
       (ctg) => ctg.title == categoryKeyword
@@ -72,6 +75,7 @@ export default function Filter(props) {
       const response = await axios.get(`${URL}/api/v1/ads?${queryString}`);
       console.log("Response", response);
       setAdsData(response?.data?.data);
+      setDisplayLocation(location);
     } catch (error) {
       console.log("Error in Api", error);
     } finally {
@@ -112,12 +116,38 @@ export default function Filter(props) {
   }, [categoryKeyword, subCategoryKeyword]);
 
   const onClearFilter = () => {
-    setCategoryKeyword("");
-    setSubCategory("");
-    setSubCategoryKeyword("");
+    setCategoryKeyword(searchQueries.get("category") || "");
+    setSubCategory(searchQueries.get("subCategory") || "");
+    setSubCategoryKeyword(searchQueries.get("subCategory") || "");
     setPrice({ min: "", max: "" });
     setColor(null);
     setLocation("");
+    searchAfterFilter();
+    setSearchParams("");
+    setDisplayLocation("");
+  };
+
+  const searchAfterFilter = async () => {
+    try {
+      setLoading(true);
+
+      const queryParams = [];
+
+      if (searchQueries.get("category"))
+        queryParams.push(`category=${searchQueries.get("category")}`);
+      if (searchQueries.get("subCategory"))
+        queryParams.push(`subCategory=${searchQueries.get("subCategory")}`);
+
+      const queryString = queryParams.join("&");
+      console.log("Query String -----------", queryString);
+      const response = await axios.get(`${URL}/api/v1/ads?${queryString}`);
+      console.log("Response", response);
+      setAdsData(response?.data?.data);
+    } catch (error) {
+      console.log("Error in Api", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -258,7 +288,7 @@ export default function Filter(props) {
         )}
       </div>
       <div className="bg-white rounded-md p-4">
-        <h3 className="mb-2 text-lg font-semibold">Price (NKN)</h3>
+        <h3 className="mb-2 text-lg font-semibold">Price (NGN)</h3>
         <div className="flex space-x-3 justify-between">
           <input
             placeholder="Min"
@@ -296,17 +326,18 @@ export default function Filter(props) {
           onChange={setColor}
           options={colorData}
           isSearchable={true}
+          value={color}
         />
       </div>
       <button
-        className="bg-blue-400 p-3 bg-[#48AFFF] text-white w-[125px] rounded-md mt-4 mr-4"
+        className=" p-3 bg-[#48AFFF] text-white w-[125px] rounded-md mt-4 mr-4"
         type="submit"
         onClick={onSearch}
       >
         Search
       </button>
       <button
-        className="bg-blue-400 p-3 bg-[#48AFFF] text-white w-[125px] rounded-md mt-4"
+        className=" p-3 bg-[#48AFFF] text-white w-[125px] rounded-md mt-4"
         onClick={onClearFilter}
         type="button"
       >

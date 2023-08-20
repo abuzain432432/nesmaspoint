@@ -5,7 +5,6 @@ export const auth = createSlice({
   initialState: {},
   reducers: {
     register: (state, action) => {
-      console.log("Register Action", action.payload);
       localStorage.setItem("auth", JSON.stringify(action.payload));
       return { ...action.payload };
     },

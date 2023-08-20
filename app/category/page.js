@@ -13,14 +13,15 @@ export default function Page({ searchParams }) {
   const [categories, setCategories] = useState();
   const [subCategory, setSubCategory] = useState();
   const [adsData, setAdsData] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [displayLocation, setDisplayLocation] = useState();
 
   useEffect(() => {
     setCategories(searchParams?.category);
     setSubCategory(searchParams?.subCategory);
   }, [searchParams]);
   return (
-    <div className="flex md:flex-row flex-col space-x-4 p-8">
+    <div className="flex md:flex-row flex-col space-x-4 p-8 mb-4">
       <div className="w-[400px]">
         <Filter
           state={state}
@@ -33,17 +34,25 @@ export default function Page({ searchParams }) {
           setSubCategoryKeyword={setSubCategory}
           setAdsData={setAdsData}
           setLoading={setLoading}
+          setDisplayLocation={setDisplayLocation}
         />
       </div>
       <div className=" flex-1">
         <h3 className="text-2xl font-semibold text-slate-700 mb-4">
-        {adsData.length} Ads found in  {subCategory || categories} in {location || "Nigeria"}
+          {adsData.length} Ads found in {subCategory || categories} in{" "}
+          {displayLocation || "Nigeria"}
         </h3>
-       {loading?<div className=""><Loading/></div>: <div className="grid gap-6  grid-cols-2  lg:grid-cols-3">
-          {adsData.map(ad => (
-            <AdsCard ad={ad} />
-          ))}
-        </div>}
+        {loading ? (
+          <div className="">
+            <Loading />
+          </div>
+        ) : (
+          <div className="grid gap-6  grid-cols-2  lg:grid-cols-3">
+            {adsData.map((ad) => (
+              <AdsCard ad={ad} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

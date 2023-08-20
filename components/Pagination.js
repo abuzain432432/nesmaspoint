@@ -6,7 +6,7 @@ import { paginate } from "@/redux/features/paginationSlice";
 export default function Pagination({ page, totalPages, setPage }) {
   const dispatch = useDispatch();
   return (
-    <div className="flex items-center justify-center space-x-6 ">
+    <div className="flex items-center justify-center space-x-6 mb-8">
       <button
         onClick={() => dispatch(paginate(-1))}
         disabled={page <= 1}

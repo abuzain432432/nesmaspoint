@@ -11,3 +11,17 @@
     -moz-appearance: textfield !important;
   }
 }
+.gradient-sidebar {
+  background: rgb(3, 105, 161);
+  background: linear-gradient(
+    90deg,
+    rgba(3, 105, 161, 1) 0%,
+    rgba(0, 88, 136, 1) 64%
+  );
+}
+.active-sidebar-tab:hover {
+  background-color: #05486ccb;
+}
+.active-tab {
+  background-color: #05486ccb;
+}

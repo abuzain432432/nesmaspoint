@@ -55,18 +55,13 @@ export default function Page() {
     return (
       <div className="w-full mt-4 h-screen flex items-center justify-center text-2xl font-semibold">
         No Ads Found
-        {/* loading..... */}
       </div>
     );
   }
 
   return (
     <div>
-      <div className="md:px-12 px-2.5 py-10   flex flex-col md:items-start items-center md:flex-row md:space-x-8">
-        {/* <Banner /> */}
-
-        {/* Same as */}
-
+      <div className="md:px-12 px-2.5 py-10 mb-4  flex flex-col md:items-start items-center md:flex-row md:space-x-8">
         <Sidebar />
         {data?.data?.length <= 0 ? (
           <h3 className="text-2xl  text-center mt-20 font-semibold w-full">
@@ -74,7 +69,6 @@ export default function Page() {
           </h3>
         ) : (
           <div className="flex-1 self-start md:mt-0 mt-6 w-full">
-            {/* <HomeBanner /> */}
             <div>
               <h1 className="text-[22px] mb-3 font-semibold text-slate-700">
                 Popular Ads
