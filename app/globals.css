@@ -25,3 +25,28 @@
 .active-tab {
   background-color: #05486ccb;
 }
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #d1d1d1;
+  margin-right: 16px;
+}
+.skeleton-button {
+  border-radius: 10px !important;
+  width: 80px;
+  /* margin-left: 40px; */
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
+  }
+  100% {
+    background-color: #f0f0f0;
+  }
+}

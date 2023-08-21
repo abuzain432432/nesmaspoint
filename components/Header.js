@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import { URL } from "@/config";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import ProfilePlaceHolder from "./ProfilePlaceHolder";
 import {
   addData,
   finishLoading,
@@ -37,6 +38,7 @@ export default function Header() {
   const LIMIT = 5;
   const dispatch = useDispatch();
   const modelName = useSelector((state) => state.modelReducer);
+  const [pageBuilding, setPageBuilding] = useState(true);
   const router = useRouter();
   let cancel;
 
@@ -74,6 +76,7 @@ export default function Header() {
   };
 
   useEffect(() => {
+    setPageBuilding(false);
     console.log("USe effect of user is running ----------");
     const user = localStorage.getItem("auth");
     if (user) {
@@ -200,6 +203,11 @@ export default function Header() {
             </button> */}
 
             <div></div>
+          </div>
+        ) : pageBuilding ? (
+          <div className="flex  flex-1 items-center justify-end space-x-6">
+            <ProfilePlaceHolder button={true} />
+            <ProfilePlaceHolder />
           </div>
         ) : (
           <div className="flex  flex-1 items-center justify-end space-x-6">

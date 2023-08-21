@@ -179,7 +179,7 @@ function DashboardSetting() {
         Authorization: `Bearer ${user.token}`,
         "Content-Type": "application/json",
       };
-      const { data } = await axios.post(
+      const { data } = await axios.patch(
         `${baseURL}/api/v1/users/updatepassword`,
         requestBody,
         { headers: requestHeaders }
