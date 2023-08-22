@@ -17,6 +17,9 @@ export default function Page() {
   const [isConditionFocus, setIsConditionFocus] = useState(null);
 
   const [color, setColor] = useState([]);
+  const [isColorInvalid, setIsColorInvalid] = useState(null);
+  const [isColorFocus, setIsColorFocus] = useState(null);
+
   const [unsavedChanges, setUnsavedChanges] = useState(false);
 
   const [negotiable, setNegotiable] = useState(null);
@@ -171,6 +174,13 @@ export default function Page() {
       setIsPriceInvalid(false);
     }
   }, [price]);
+  useEffect(() => {
+    if (color.length == 0) {
+      setIsColorInvalid(true);
+    } else {
+      setIsColorInvalid(false);
+    }
+  }, [color]);
 
   useEffect(() => {
     if (phoneNumber.trim() === "" || isNaN(phoneNumber)) {
@@ -263,7 +273,15 @@ export default function Page() {
           options={colorData}
           name="color"
           placeholder="Color*"
+          // ///////
+          onFocus={() => setIsColorFocus(true)}
+          onBlur={() => setIsColorFocus(false)}
         />
+        {isColorInvalid && isColorFocus && (
+          <p className="text-red-500 mb-4 whitespace-nowrap">
+            Please select product color
+          </p>
+        )}
         <textarea
           className={`border w-full ${
             isDescriptionInvalid && isDescriptionFocus ? "mb-1" : "mb-4"
@@ -359,7 +377,8 @@ export default function Page() {
           isDescriptionInvalid ||
           isPriceInvalid ||
           isNegotiableInvalid ||
-          isConditionInvalid
+          isConditionInvalid ||
+          isColorInvalid
         }
         onClick={onSubmit}
         className="bg-[#48AFFF] my-3 disabled:bg-blue-200 text-white font-medium text-[16px] w-full rounded-md p-2.5"

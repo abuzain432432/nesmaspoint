@@ -5,12 +5,15 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import Loading from "./LoadingSpinner";
+import { useRouter } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async () => {
     setLoading(true);
@@ -53,8 +56,6 @@ const LoginModal = ({ isOpen, onClose }) => {
 
   return (
     <div
-      onClick={() => {onClose("login");  setEmail("");
-      setPassword("");}}
       className={`${
         isOpen
           ? "fixed h-screen z-50 bg-black/20 inset-0 flex items-center justify-center"
@@ -62,23 +63,34 @@ const LoginModal = ({ isOpen, onClose }) => {
       }`}
     >
       <div
-        onClick={e => e.stopPropagation()}
-        className="bg-white  rounded-lg w-[500px] p-6"
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white relative rounded-lg w-[500px] p-6"
       >
+        <div
+          onClick={() => {
+            onClose("login");
+            setEmail("");
+            setPassword("");
+          }}
+          role="button"
+          className="absolute cursor-pointer right-4 top-4"
+        >
+          <IoMdClose size={30} />
+        </div>
         <h2 className="text-2xl font-semibold mb-4 text-center">Login</h2>
         <input
           type="text"
           placeholder="Email"
           className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
           className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button
           className="bg-[#48AFFF] max-h-10 text-white rounded-lg px-4 py-2 w-full flex space-x-4 justify-center items-center"
@@ -87,6 +99,18 @@ const LoginModal = ({ isOpen, onClose }) => {
         >
           Login {loading && <Loading />}
         </button>
+        <p
+          role="link"
+          onClick={() => {
+            router.push("/forgetpassword");
+            onClose("login");
+            setEmail("");
+            setPassword("");
+          }}
+          className="text-blue-500 mt-6 cursor-pointer"
+        >
+          Forget Password?
+        </p>
       </div>
     </div>
   );

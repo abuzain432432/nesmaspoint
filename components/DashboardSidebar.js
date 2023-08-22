@@ -9,11 +9,13 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Loading from "./LoadingSpinner";
+import { useSelector } from "react-redux";
 
 function DashboardSidebar({ onActiveTabe, activeTab }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const user = useSelector((state) => state.authReducer);
 
   let top = "top-[0px]";
   if (activeTab === "setting") {
@@ -50,19 +52,22 @@ function DashboardSidebar({ onActiveTabe, activeTab }) {
         <div
           className={`active-tab absolute transition duration-200 ${top} left-0 w-1 h-[50px]`}
         ></div>
-        <li
-          className={`active-sidebar-tab ${
-            activeTab === "ads" && "active-tab"
-          } cursor-pointer w-[80%] mb-2 mx-auto rounded-lg h-[50px] flex items-center px-4`}
-          onClick={() => onActiveTabe("ads")}
-        >
-          <p className="flex items-center gap-6">
-            <span>
-              <MdOutlineAddShoppingCart fontSize={20} />
-            </span>
-            <span className="uppercase text-base">My Adverts</span>
-          </p>
-        </li>
+        {user?.active && (
+          <li
+            className={`active-sidebar-tab ${
+              activeTab === "ads" && "active-tab"
+            } cursor-pointer w-[80%] mb-2 mx-auto rounded-lg h-[50px] flex items-center px-4`}
+            onClick={() => onActiveTabe("ads")}
+          >
+            <p className="flex items-center gap-6">
+              <span>
+                <MdOutlineAddShoppingCart fontSize={20} />
+              </span>
+              <span className="uppercase text-base">My Adverts</span>
+            </p>
+          </li>
+        )}
+
         <li
           className={`active-sidebar-tab ${
             activeTab === "setting" && "active-tab"

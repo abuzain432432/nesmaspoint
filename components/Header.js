@@ -136,6 +136,9 @@ export default function Header() {
     }
   }, [page, search, pathname]);
 
+  console.log(user);
+  console.log("user__________________________");
+
   return (
     <>
       <ToastContainer
@@ -180,9 +183,14 @@ export default function Header() {
             </button>
           </div>
         )}
-        {user?.active ? (
+        {pageBuilding ? (
+          <div className="flex  flex-1 items-center justify-end space-x-6">
+            <ProfilePlaceHolder button={true} />
+            <ProfilePlaceHolder />
+          </div>
+        ) : user?.token ? (
           <div className="flex  flex-1 items-center justify-end md:space-x-6 space-x-2">
-            <Link href="/sell">
+            <Link href={user?.active ? "/sell" : `/otp/?email=${user?.email}`}>
               <button className="bg-[#48AFFF] md:text-auto text-sm  text-white md:px-6 px-2 py-2.5 rounded-md">
                 POST ADS
               </button>
@@ -192,22 +200,10 @@ export default function Header() {
               width={35}
               height={35}
               className="rounded-full cursor-pointer"
-              src={`${URL}/images/users/${user?.photo}`}
+              src={`${URL}/images/users/${user?.photo}?${Math.random()}`}
             />
-            {/* <button
-              onClick={() => dispatch(logout())}
-              className="text-sm border border-[#48AFFF] p-2 rounded-md px-4"
-            >
-              {user?.firstName}
-            
-            </button> */}
 
             <div></div>
-          </div>
-        ) : pageBuilding ? (
-          <div className="flex  flex-1 items-center justify-end space-x-6">
-            <ProfilePlaceHolder button={true} />
-            <ProfilePlaceHolder />
           </div>
         ) : (
           <div className="flex  flex-1 items-center justify-end space-x-6">

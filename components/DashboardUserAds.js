@@ -69,7 +69,7 @@ function DashboardUserAds() {
     <div className="flex-1">
       {!data?.length ? (
         <h3 className="text-2xl  text-center mt-20 font-semibold w-full">
-          No Ads Found click on the post add button to post ads
+          No Ads Found click on the post ads button to post ads
         </h3>
       ) : (
         <>

@@ -18,7 +18,7 @@ export default function Page() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state?.adsCollection);
   const { data } = useSelector((state) => state?.adsCollection);
-  console.log("Data of ad collection", data);
+  // console.log("Data of ad collection", data);
   // const [page, setPage] = useState(1);
 
   const page = useSelector((state) => state.paginationReducer.page);
@@ -45,7 +45,8 @@ export default function Page() {
 
   if (loading) {
     return (
-      <div className=" h-screen">
+      <div className="md:px-12 px-2.5 py-10 mb-4  flex flex-col md:items-start items-center md:flex-row md:space-x-8">
+        <Sidebar />
         <Loading />
       </div>
     );

@@ -17,7 +17,8 @@ export const auth = createSlice({
       return {};
     },
     activate: (state, action) => {
-      return { ...state, token: action.payload };
+      localStorage.setItem("auth", JSON.stringify(action.payload));
+      return { ...action.payload };
     },
   },
 });
