@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 function Page() {
   const user = useSelector((state) => state.authReducer);
   const [pageBuilding, setPageBuilding] = useState(true);
-  console.log(user);
+
   useEffect(() => {
     setPageBuilding(false);
     setActiveTab(user?.active ? "ads" : "setting");

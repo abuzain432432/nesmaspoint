@@ -84,7 +84,6 @@ function DashboardSetting() {
     };
     seIsAccountSettingLoading(true);
     try {
-      console.log(user?.lastName !== lastName);
       const { data } = await axios.patch(
         `${baseURL}/api/v1/users/me`,
         formData,

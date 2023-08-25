@@ -36,7 +36,7 @@ export default function Filter(props) {
 
   const [price, setPrice] = useState({ min: "", max: "" });
   const [color, setColor] = useState(null);
-  console.log("Search Params", searchQueries.get("category"));
+
   useEffect(() => {
     const selectedCategory = sidebarData.find(
       (ctg) => ctg.title == categoryKeyword
@@ -44,15 +44,11 @@ export default function Filter(props) {
     setCategories(selectedCategory);
   }, [categoryKeyword, subCategoryKeyword]);
 
-  console.log("Price", price);
-
   const handleLocationClick = (e, item) => {
     e.stopPropagation();
     setOpenDropDown("location");
     setState(item);
   };
-
-  console.log("Color", color, color?.length > 1);
 
   const onSearch = async (e) => {
     e.preventDefault();
@@ -74,23 +70,21 @@ export default function Filter(props) {
       }
 
       const queryString = queryParams.join("&");
-      console.log("Query String -----------", queryString);
+
       const response = await axios.get(`${URL}/api/v1/ads?${queryString}`);
-      console.log("Response", response);
+
       setAdsData(response?.data?.data);
       setDisplayLocation(location);
       if (isFilterActive) {
         setIsFilterActive(false);
       }
     } catch (error) {
-      console.log("Error in Api", error);
     } finally {
       setLoading(false);
     }
   };
 
   const onLoadSearch = async () => {
-    console.log("___________ on Search _________");
     try {
       setLoading(true);
 
@@ -101,18 +95,15 @@ export default function Filter(props) {
         queryParams.push(`subCategory=${subCategoryKeyword}`);
 
       const queryString = queryParams.join("&");
-      console.log("Query String -----------", queryString);
+
       const response = await axios.get(`${URL}/api/v1/ads?${queryString}`);
-      console.log("Response", response);
+
       setAdsData(response?.data?.data);
     } catch (error) {
-      console.log("Error in Api", error);
     } finally {
       setLoading(false);
     }
   };
-
-  console.log("Category keyword", categoryKeyword);
 
   useEffect(() => {
     if (!loadFetch && categoryKeyword) {
@@ -148,12 +139,11 @@ export default function Filter(props) {
         queryParams.push(`subCategory=${searchQueries.get("subCategory")}`);
 
       const queryString = queryParams.join("&");
-      console.log("Query String -----------", queryString);
+
       const response = await axios.get(`${URL}/api/v1/ads?${queryString}`);
-      console.log("Response", response);
+
       setAdsData(response?.data?.data);
     } catch (error) {
-      console.log("Error in Api", error);
     } finally {
       setLoading(false);
     }

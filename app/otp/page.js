@@ -24,7 +24,7 @@ export default function Page() {
       const { data } = await axios.post(`${URL}/api/v1/users/resendsignupotp`, {
         email,
       });
-      console.log(data.message);
+
       toast.success(data.message, {
         position: "top-right",
         autoClose: 5000,
@@ -70,11 +70,10 @@ export default function Page() {
           theme: "light",
         });
       }
-      console.log(data);
+
       const userData = localStorage.getItem("auth");
       dispatch(activate({ ...JSON.parse(userData), active: true }));
       router.back();
-      console.log("---- data", data);
     } catch (err) {
       toast.error("Invalid Otp", {
         position: "top-right",

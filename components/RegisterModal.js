@@ -78,8 +78,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
         password,
         passwordConfirm,
       });
-      console.log("Data ----", data);
-      console.log(firstName, lastName, data.token, data.user.photo, email);
+
       dispatch(
         register({
           firstName,
@@ -105,7 +104,6 @@ const RegisterModal = ({ isOpen, onClose }) => {
       router.push(`/otp?email=${email}`);
       onCloseModel();
     } catch (error) {
-      console.log(error.response.data);
       toast.error(
         error?.response?.data?.message ||
           (error.response.status == 429 && error.response.data),

@@ -24,7 +24,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         password,
       });
       dispatch(login({ ...data.user, token: data.token }));
-      console.log("---- data --- ", data);
+
       toast.success("Logged In", {
         position: "top-right",
         autoClose: 5000,
@@ -39,7 +39,6 @@ const LoginModal = ({ isOpen, onClose }) => {
       setPassword("");
       onClose("login");
     } catch (error) {
-      console.log("Error", error, error?.response?.data?.message);
       toast.error(error?.response?.data?.message, {
         position: "top-right",
         autoClose: 5000,

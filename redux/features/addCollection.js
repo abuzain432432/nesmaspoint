@@ -5,7 +5,6 @@ export const addCollection = createSlice({
   initialState: { loading: true, data: [] },
   reducers: {
     addData: (state, action) => {
-      console.log("********", action);
       return { ...state, data: action.payload };
     },
     startLoading: (state, action) => {

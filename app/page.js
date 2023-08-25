@@ -17,8 +17,6 @@ export default function Page() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state?.adsCollection);
   const { data } = useSelector((state) => state?.adsCollection);
-  // console.log("Data of ad collection", data);
-  // const [page, setPage] = useState(1);
 
   const page = useSelector((state) => state.paginationReducer.page);
   const LIMIT = 20;

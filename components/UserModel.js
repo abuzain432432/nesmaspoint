@@ -21,7 +21,7 @@ const UserModel = ({ isOpen, onClose }) => {
     setLoading(true);
     try {
       const { data } = await axios.post(`${URL}/api/v1/users/signup`, {});
-      console.log("Data ----", data);
+
       // dispatch(register({ firstName, lastName, email }));
       //   toast.success(
       //     "Account Created, Please Check Your Email to activate Your account!",
@@ -50,7 +50,6 @@ const UserModel = ({ isOpen, onClose }) => {
         progress: undefined,
         theme: "light",
       });
-      console.log("******", err);
     } finally {
       setLoading(false);
     }
