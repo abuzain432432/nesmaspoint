@@ -94,7 +94,7 @@ export default function Header() {
       const signal = controller.signal;
 
       const response = await fetch(
-        `${URL}/api/v1/ads?page=${page}&limit=${LIMIT}&searchTerm=${search}`,
+        `${URL}/api/v1/ads?page=${page}&limit=${LIMIT}&searchTerm=${search}&sort=-boosted`,
         {
           method: "GET",
           signal,

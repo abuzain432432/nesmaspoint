@@ -147,7 +147,15 @@ export default function Page({ params }) {
                 </div>
               </div>
             </div>
-            <p className="text-gray-600 my-2">{ad?.description}</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: decodeURIComponent(ad?.description).replace(
+                  /\n/g,
+                  "<br>"
+                ),
+              }}
+              className="text-gray-600 my-2"
+            ></p>
             <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 text-slate-500 justify-between border-b border-slate-200 pb-5">
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0   md:items-center md:space-x-5 ">
                 <p className="flex space-x-1 items-center">

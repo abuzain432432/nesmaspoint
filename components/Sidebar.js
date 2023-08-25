@@ -37,7 +37,7 @@ export default function Sidebar() {
             </Link>
           ))}
         </div>
-        <div className=" 2xl:w-[350px]  xl:w-[300px] lg:w-[280px] md:w-[250px] 2xl:left-[348px] xl:left-[308px] lg:left-[290px] md:left-[260px]  hidden h-[600px] overflow-scroll group-hover:block bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px_0px] absolute  top-0 bottom-0 z-20   ">
+        <div className=" 2xl:w-[350px]  xl:w-[300px] lg:w-[280px] md:w-[250px] 2xl:left-[330px] xl:left-[300px] lg:left-[280px] md:left-[250px]  hidden h-[600px] overflow-scroll group-hover:block bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px_0px] absolute  top-0 bottom-0 z-20   ">
           {active?.subCategories?.map((sub) => (
             <Link
               href={`/category?category=${active?.title}&subCategory=${sub.title}`}
