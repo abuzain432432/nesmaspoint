@@ -62,7 +62,9 @@ export default function AdsCard({ ad, userAdd = false, onAdDelete }) {
 
   return (
     <div
-      onClick={() => router.push(`/details/${ad._id}`)}
+      onClick={() =>
+        router.push(`/details/${ad._id}?user=${userAdd ? userAdd : ""}`)
+      }
       className="group rounded-md overflow-hidden cursor-pointer relative"
     >
       <div
@@ -80,7 +82,7 @@ export default function AdsCard({ ad, userAdd = false, onAdDelete }) {
           fill={true}
         />
       </div>
-      <div className="bg-white px-1.5 pb-1.5 pt-4 relative flex justify-between items-center">
+      <div className="bg-white px-1.5 pb-1.5 pt-4 relative flex justify-between items-center gap-2 flex-wrap">
         {/* <button className="bg-white absolute right-1 -top-4 p-1.5 rounded-full shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
           <AiOutlineHeart color="#48AFFF" size={20} />
         </button> */}
@@ -93,7 +95,7 @@ export default function AdsCard({ ad, userAdd = false, onAdDelete }) {
             disabled={deleting}
             onClick={handleAdDelete}
             className={`flex   text-white px-6  rounded-lg ${
-              deleting ? "bg-red-300  py-0" : "bg-red-500 py-2"
+              deleting ? "bg-red-300  py-0" : "bg-red-500 lg:py-2 py-1.5"
             }`}
           >
             <button className="">

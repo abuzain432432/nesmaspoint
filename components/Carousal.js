@@ -36,7 +36,10 @@ export default function Carousal({ images }) {
       renderArrowPrev={leftArrow}
     >
       {images.map((item, index) => (
-        <div key={index} className="w-full  relative md:h-[600px] h-[350px]">
+        <div
+          key={index}
+          className="w-full rounded-lg overflow-hidden  relative md:h-[600px] h-[350px]"
+        >
           <div className="flex items-center bg-black/50 px-2 py-1.5 rounded-md  absolute  bottom-4 left-4 z-20">
             <BsFillCameraFill size={17} color="white" />
             <span className="flex text-sm text-white ml-2">{`${index + 1} / ${

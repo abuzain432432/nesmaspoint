@@ -4,17 +4,21 @@ import React, { useEffect, useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { colorData } from "@/Data/FilterData";
 import PromoteAd from "../PromoteAd";
+import { ToastContainer, toast } from "react-toastify";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addData } from "@/redux/features/adSlice";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { URL } from "@/config";
+import Loading from "@/components/LoadingSpinner";
 
 export default function Page() {
   const [condition, setCondition] = useState(null);
   const [isConditionInvalid, setIsConditionInvalid] = useState(null);
   const [isConditionFocus, setIsConditionFocus] = useState(null);
+
+  const [adPosting, setAdPosting] = useState(false);
 
   const [color, setColor] = useState([]);
   const [isColorInvalid, setIsColorInvalid] = useState(null);
@@ -57,9 +61,6 @@ export default function Page() {
   const router = useRouter();
   const user = useSelector((state) => state.authReducer);
 
-  // console.log("****** -----", user);
-
-  // console.log("------ state", ads);
   const conditionOptions = [
     { label: "Brand New", value: "new" },
     { label: "Used", value: "used" },
@@ -80,31 +81,14 @@ export default function Page() {
     setName("");
     setSelectedAd("");
   };
-
-  // console.log("------", adsReducer, "-----?");
-  // console.log("Condition", condition);
   const onSubmit = async () => {
     try {
-      console.log("---------", {
-        ...adsReducer,
-        condition,
-        title,
-        description,
-        color,
-        price,
-        bulkPrice,
-        bulkSize,
-        boostValue: selectedAd,
-      });
-      console.log("------", adsReducer, "?????", Object.entries(adsReducer));
-
       const images = adsReducer.images ?? [];
 
       let formData = new FormData();
       color.forEach((item) => formData.append("color", item.value));
 
       images.forEach((file, index) => {
-        // console.log("*********", index, file.file);
         formData.append(`photos`, file.file);
       });
       for (let pair of Object.entries(adsReducer)) {
@@ -123,24 +107,52 @@ export default function Page() {
       formData.append("priceType", negotiable?.value);
       formData.append("bulkPrice", bulkPrice);
       formData.append("bulkSize", bulkSize);
-
+      setAdPosting(true);
       const { data } = await axios.post(`${URL}/api/v1/ads`, formData, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      if (data.status === "success") {
-        setUnsavedChanges(false);
-        router.push(data?.data?.data?.authorization_url ?? router.replace("/"));
-      }
-      console.log("---- data ---", data);
+
+      setUnsavedChanges(false);
+      toast.success(
+        data?.data ||
+          "Your request to post ad has been sent successfully .Please wait to approve it ",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+      router.push(data?.data?.data?.authorization_url ?? router.replace("/"));
     } catch (error) {
-      console.log("------", error);
+      if (
+        error?.message ==
+        "Cannot read properties of undefined (reading 'startsWith')"
+      ) {
+        return;
+      }
+      toast.error(error?.response?.data?.message || "Something went wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } finally {
+      setAdPosting(false);
     }
   };
 
   useEffect(() => {
-    // console.log(" In use Effect ads Reducer -------=====", ads)
     if (!adsReducer?.category) {
       router.replace("/sell");
     }
@@ -166,8 +178,6 @@ export default function Page() {
   }, [condition]);
 
   useEffect(() => {
-    console.log(title.trim() === "" || isNaN(title));
-    console.log(isNaN(title));
     if (price.trim() === "" || isNaN(price)) {
       setIsPriceInvalid(true);
     } else {
@@ -378,12 +388,16 @@ export default function Page() {
           isPriceInvalid ||
           isNegotiableInvalid ||
           isConditionInvalid ||
-          isColorInvalid
+          isColorInvalid ||
+          adPosting
         }
         onClick={onSubmit}
-        className="bg-[#48AFFF] my-3 disabled:bg-blue-200 text-white font-medium text-[16px] w-full rounded-md p-2.5"
+        className={`bg-[#48AFFF] flex items-center justify-center my-3  disabled:bg-blue-200 text-white font-medium text-[16px] w-full rounded-md  ${
+          adPosting ? "" : "p-2.5"
+        }`}
       >
         Create
+        {adPosting && <Loading />}
       </button>
     </div>
   );

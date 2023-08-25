@@ -14,7 +14,6 @@ import Loading from "@/components/Loading";
 import { addData } from "@/redux/features/addCollection";
 
 export default function Page() {
-  // const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state?.adsCollection);
   const { data } = useSelector((state) => state?.adsCollection);
@@ -23,29 +22,10 @@ export default function Page() {
 
   const page = useSelector((state) => state.paginationReducer.page);
   const LIMIT = 20;
-  // const fetchData = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.get(
-  //       `${URL}/api/v1/ads?page=${page}&limit=${LIMIT}`
-  //     );
-  //     console.log("Data of ads ......", response);
-  //     dispatch(addData(response?.data));
-  //     //     setData(response.data);
-  //   } catch (error) {
-  //     console.log("------ error ----", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, [page]);
 
   if (loading) {
     return (
-      <div className="md:px-12 px-2.5 py-10 mb-4  flex flex-col md:items-start items-center md:flex-row md:space-x-8">
+      <div className="sm:mt-8 mt-6 mb-10 md:px-6 sm:px-5 px-4 lg:px-8 xl:px-16  xl:py-16 md:py-10  flex flex-col md:items-start items-center md:flex-row md:space-x-8">
         <Sidebar />
         <Loading />
       </div>
@@ -54,7 +34,7 @@ export default function Page() {
 
   if (data?.length <= 0) {
     return (
-      <div className="w-full mt-4 h-screen flex items-center justify-center text-2xl font-semibold">
+      <div className="w-full mt-6 h-screen flex items-center justify-center text-2xl font-semibold">
         No Ads Found
       </div>
     );
@@ -62,19 +42,19 @@ export default function Page() {
 
   return (
     <div>
-      <div className="md:px-12 px-2.5 py-10 mb-4  flex flex-col md:items-start items-center md:flex-row md:space-x-8">
+      <div className="sm:mt-8 mt-6 mb-10 md:px-6 sm:px-5 px-4 lg:px-8 xl:px-16  xl:py-16 md:py-10  flex flex-col md:items-start items-center md:flex-row md:space-x-8">
         <Sidebar />
         {data?.data?.length <= 0 ? (
           <h3 className="text-2xl  text-center mt-20 font-semibold w-full">
             No Ads Found
           </h3>
         ) : (
-          <div className="flex-1 self-start md:mt-0 mt-6 w-full">
+          <div className="flex-1 self-start md:mt-0 sm:mt-8 mt-6 w-full">
             <div>
-              <h1 className="text-[22px] mb-3 font-semibold text-slate-700">
+              <h1 className="text-[22px] mb-2 font-semibold text-slate-700">
                 Popular Ads
               </h1>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 ">
+              <div className="grid lg:grid-cols-3 md:grid-cols-2 2xl:grid-cols-4 md:gap-5 gap-4 xl:gap-6 ">
                 {data?.data?.map((ad) => (
                   <AdsCard ad={ad} />
                 ))}

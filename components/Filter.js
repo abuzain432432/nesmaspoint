@@ -23,6 +23,8 @@ export default function Filter(props) {
     setAdsData,
     setLoading,
     setDisplayLocation,
+    setIsFilterActive,
+    isFilterActive,
   } = props;
 
   const [openDropdown, setOpenDropDown] = useState();
@@ -52,7 +54,8 @@ export default function Filter(props) {
 
   console.log("Color", color, color?.length > 1);
 
-  const onSearch = async () => {
+  const onSearch = async (e) => {
+    e.preventDefault();
     try {
       setLoading(true);
 
@@ -76,6 +79,9 @@ export default function Filter(props) {
       console.log("Response", response);
       setAdsData(response?.data?.data);
       setDisplayLocation(location);
+      if (isFilterActive) {
+        setIsFilterActive(false);
+      }
     } catch (error) {
       console.log("Error in Api", error);
     } finally {
@@ -125,6 +131,9 @@ export default function Filter(props) {
     searchAfterFilter();
     setSearchParams("");
     setDisplayLocation("");
+    if (isFilterActive) {
+      setIsFilterActive(false);
+    }
   };
 
   const searchAfterFilter = async () => {
@@ -151,13 +160,18 @@ export default function Filter(props) {
   };
 
   return (
-    <div>
+    <form
+      className={`${
+        isFilterActive ? "block" : "md:block hidden"
+      } 2xl:w-[380px] md:mb-0 mb-10 xl:w-[350px] lg:w-[300px] md:w-[250px]`}
+      onSubmit={onSearch}
+    >
       <input
         type="text"
         placeholder="Enter Keywords"
         value={searchParams}
         onChange={(e) => setSearchParams(e.target.value)}
-        className="border bg-white border-slate-400 rounded-md p-3 mb-4 w-full outline-none"
+        className="border bg-white border-slate-400 rounded-md 2xl:p-3 lg:p-2 md:p-1.5 md:px-3 sm:px-4 px-3 py-2 mb-2.5 md:mb-3 w-full outline-none"
       />
       {openDropdown && (
         <div
@@ -170,7 +184,7 @@ export default function Filter(props) {
 
       <div
         onClick={() => setOpenDropDown("category")}
-        className="relative border bg-white border-slate-400 rounded-md p-3 mb-4"
+        className="relative border bg-white border-slate-400 rounded-md 2xl:p-3 lg:p-2 sm:px-4 px-3 py-2 md:p-1.5 md:px-3 mb-2.5 md:mb-3"
       >
         <input
           className="w-full border-none outline-none"
@@ -207,7 +221,7 @@ export default function Filter(props) {
       {categoryKeyword && (
         <div
           onClick={() => setOpenDropDown("subCategory")}
-          className="relative border bg-white border-slate-400 rounded-md p-3 mb-4"
+          className="relative border bg-white border-slate-400 rounded-md 2xl:p-3 lg:p-2 sm:px-4 px-3 py-2 md:p-1.5 md:px-3 mb-2.5 md:mb-3"
         >
           <input
             className="w-full border-none outline-none"
@@ -242,7 +256,7 @@ export default function Filter(props) {
       )}
       <div
         onClick={() => setOpenDropDown("state")}
-        className="border bg-white relative border-slate-400 rounded-md p-3 mb-4"
+        className="border bg-white relative border-slate-400 rounded-md 2xl:p-3 lg:p-2 sm:px-4 px-3 py-2 md:p-1.5 md:px-3 mb-4"
       >
         <input
           className="w-full border-none outline-none"
@@ -287,19 +301,19 @@ export default function Filter(props) {
           </div>
         )}
       </div>
-      <div className="bg-white rounded-md p-4">
+      <div className="bg-white rounded-md md:p-4 sm:p-6 p-4">
         <h3 className="mb-2 text-lg font-semibold">Price (NGN)</h3>
-        <div className="flex space-x-3 justify-between">
+        <div className="flex items-center xl:gap-x-2 sm:gap-x-2 lg:gap-x-1.5 md:gap-x-1 justify-between">
           <input
             placeholder="Min"
-            className="w-[150px] p-2 rounded-md outline-none appearance-none border border-slate-300"
+            className="xl:p-2 sm:py-2 sm:px-4  lg:py-1.5 px-3 py-1.5 lg:px-2 md:py-1 md:px-1.5 flex-1 w-full rounded-md outline-none appearance-none border border-slate-300"
             type="number"
             onChange={(e) => setPrice({ ...price, min: e.target.value })}
           />
           <span className="text-xl font-medium">-</span>
           <input
             placeholder="Max"
-            className="w-[150px] p-2 rounded-md outline-none border border-slate-300"
+            className="xl:p-2 lg:py-1.5 sm:py-2 sm:px-4 px-3 py-1.5 lg:px-2 md:py-1 md:px-1.5 flex-1 w-full rounded-md outline-none border border-slate-300"
             type="number"
             onChange={(e) => setPrice({ ...price, max: e.target.value })}
           />
@@ -329,20 +343,21 @@ export default function Filter(props) {
           value={color}
         />
       </div>
-      <button
-        className=" p-3 bg-[#48AFFF] text-white w-[125px] rounded-md mt-4 mr-4"
-        type="submit"
-        onClick={onSearch}
-      >
-        Search
-      </button>
-      <button
-        className=" p-3 bg-[#48AFFF] text-white w-[125px] rounded-md mt-4"
-        onClick={onClearFilter}
-        type="button"
-      >
-        Clear Filter
-      </button>
-    </div>
+      <div className="flex">
+        <button
+          className=" 2xl:p-3 lg:p-2 p-1.5 bg-[#48AFFF] text-white 2xl:w-[125px] w-[105px] sm:w-[125px] rounded-md mt-4 mr-4"
+          type="submit"
+        >
+          Search
+        </button>
+        <button
+          className="2xl:p-3 lg:p-2 p-1.5 bg-[#48AFFF] text-white 2xl:w-[125px] w-[105px] sm:w-[125px] rounded-md  mt-4"
+          onClick={onClearFilter}
+          type="button"
+        >
+          Clear Filter
+        </button>
+      </div>
+    </form>
   );
 }

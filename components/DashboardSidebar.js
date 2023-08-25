@@ -47,54 +47,91 @@ function DashboardSidebar({ onActiveTabe, activeTab }) {
     }
   };
   return (
-    <aside className=" gradient-sidebar w-[350px] pt-14 text-white">
-      <ul className="flex flex-col relative ">
-        <div
-          className={`active-tab absolute transition duration-200 ${top} left-0 w-1 h-[50px]`}
-        ></div>
-        {user?.active && (
+    <>
+      <aside className="md:block hidden gradient-sidebar 2xl:w-[350px] lg:w-[300px] md:w-[250px] sm:w-[230px] md:pt-14 sm:pt-10 text-white">
+        <ul className="flex  flex-col relative ">
+          {user?.active && (
+            <li
+              className={`active-sidebar-tab ${
+                activeTab === "ads" && "active-tab"
+              } cursor-pointer lg:w-[80%] md:w-[75%] sm:w-[80%] mb-2 mx-auto rounded-lg lg:h-[50px] sm:h-[40px] flex items-center px-4`}
+              onClick={() => onActiveTabe("ads")}
+            >
+              <p className="flex items-center xl:gap-6 md:gap-4 sm:gap-2">
+                <span>
+                  <MdOutlineAddShoppingCart fontSize={20} />
+                </span>
+                <span className="uppercase xl:text-base text-sm ">
+                  My Adverts
+                </span>
+              </p>
+            </li>
+          )}
+
           <li
             className={`active-sidebar-tab ${
-              activeTab === "ads" && "active-tab"
-            } cursor-pointer w-[80%] mb-2 mx-auto rounded-lg h-[50px] flex items-center px-4`}
-            onClick={() => onActiveTabe("ads")}
+              activeTab === "setting" && "active-tab"
+            } cursor-pointer lg:w-[80%] md:w-[75%] sm:w-[80%] mb-2 mx-auto rounded-lg lg:h-[50px] sm:h-[40px] flex items-center px-4`}
+            onClick={() => onActiveTabe("setting")}
           >
-            <p className="flex items-center gap-6">
+            <p className="flex items-center xl:gap-6 md:gap-4 sm:gap-2">
               <span>
-                <MdOutlineAddShoppingCart fontSize={20} />
+                <FiSettings fontSize={20} />
               </span>
-              <span className="uppercase text-base">My Adverts</span>
+              <span className="uppercase xl:text-base text-sm">Setting</span>
             </p>
           </li>
-        )}
+          <li
+            onClick={handleLogout}
+            className="cursor-pointer lg:w-[80%] md:w-[75%] sm:w-[80%] mb-2 mx-auto rounded-lg lg:h-[50px] sm:h-[40px] flex items-center px-4"
+          >
+            <p className="flex items-center xl:gap-6 md:gap-4 sm:gap-2">
+              <span>
+                <FiLogOut fontSize={20} />
+              </span>
+              <span className="uppercase xl:text-base text-sm">Logout</span>
+              {loading && <Loading />}
+            </p>
+          </li>
+        </ul>
+      </aside>
+      <aside className="mt-6 md:hidden px-3  sm:mb-8">
+        <ul className="flex  relative ">
+          {user?.active && (
+            <li
+              className={`active-sidebar-tab ${
+                activeTab === "ads" && "active-tab"
+              } cursor-pointer rounded-lg flex py-2 items-center px-4`}
+              onClick={() => onActiveTabe("ads")}
+            >
+              <p className="flex items-center ">
+                <span className="uppercase text-[12px]">Adverts</span>
+              </p>
+            </li>
+          )}
 
-        <li
-          className={`active-sidebar-tab ${
-            activeTab === "setting" && "active-tab"
-          } cursor-pointer w-[80%] mb-1 mx-auto rounded-lg h-[50px] flex items-center px-4`}
-          onClick={() => onActiveTabe("setting")}
-        >
-          <p className="flex items-center gap-6">
-            <span>
-              <FiSettings fontSize={20} />
-            </span>
-            <span className="uppercase text-base">Setting</span>
-          </p>
-        </li>
-        <li
-          onClick={handleLogout}
-          className="active-sidebar-tab cursor-pointer w-[80%] mx-auto rounded-lg h-[50px] flex items-center px-4"
-        >
-          <p className="flex items-center gap-6">
-            <span>
-              <FiLogOut fontSize={20} />
-            </span>
-            <span className="uppercase text-base">Logout</span>
-            {loading && <Loading />}
-          </p>
-        </li>
-      </ul>
-    </aside>
+          <li
+            className={`active-sidebar-tab ${
+              activeTab === "setting" && "active-tab"
+            } cursor-pointer  rounded-lg py-2 flex items-center px-4`}
+            onClick={() => onActiveTabe("setting")}
+          >
+            <p className="flex items-center ">
+              <span className="uppercase text-[12px]">Setting</span>
+            </p>
+          </li>
+          <li
+            onClick={handleLogout}
+            className="cursor-pointer  rounded-lg py-2  flex items-center px-4"
+          >
+            <p className="flex items-center ">
+              <span className="uppercase text-[12px]">Logout</span>
+              {loading && <Loading />}
+            </p>
+          </li>
+        </ul>
+      </aside>
+    </>
   );
 }
 

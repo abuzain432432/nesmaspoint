@@ -2,11 +2,11 @@ import React from "react";
 
 export default function Page() {
   return (
-    <div className="py-8 max-w-[1000px] mx-auto md:px-20 px-3 min-h-[calc(100vh-70px)]">
-      <h3 className="text-2xl font-semibold mb-2 underline underline-offset-2">
+    <div className="md:py-8 py-5 max-w-[1000px] mx-auto md:px-20 px-3 min-h-[calc(100vh-70px)]">
+      <h3 className="md:text-2xl text-xl font-semibold md:mb-2 mb-1 underline underline-offset-2">
         About
       </h3>
-      <p>
+      <p className="md:leading-[1.4] leading-[1.2]">
         NesMasPoint Is a Classified Ads Marketplace which provides sellers and
         business owners an avenue to advertise their products and services to
         potential buyers with little fees or no fees option. The Marketplace

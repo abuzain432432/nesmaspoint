@@ -42,8 +42,6 @@ export default function Header() {
   const router = useRouter();
   let cancel;
 
-  console.log("Router path name", pathname);
-
   const handleOpenModal = (name) => {
     if (name === "login") {
       dispatch(onModelToggle("login"));
@@ -77,11 +75,9 @@ export default function Header() {
 
   useEffect(() => {
     setPageBuilding(false);
-    console.log("USe effect of user is running ----------");
     const user = localStorage.getItem("auth");
     if (user) {
       const parsedUser = JSON.parse(user);
-      console.log("Parsed User **********", parsedUser);
       dispatch(login(parsedUser));
     }
   }, []);
@@ -114,9 +110,7 @@ export default function Header() {
       dispatch(addData(data));
     } catch (error) {
       if (error.name === "AbortError") {
-        console.log("Request canceled:", error.message);
       } else {
-        console.log("Error:", error);
       }
     } finally {
       dispatch(finishLoading());
@@ -130,14 +124,10 @@ export default function Header() {
   };
 
   useEffect(() => {
-    console.log("Running use Effect -----------");
     if (pathname === "/") {
       fetchData();
     }
   }, [page, search, pathname]);
-
-  console.log(user);
-  console.log("user__________________________");
 
   return (
     <>
@@ -156,10 +146,13 @@ export default function Header() {
       <LoginModal isOpen={loginModal} onClose={handleCloseModal} />
       <RegisterModal isOpen={registerModal} onClose={handleCloseModal} />
       <UserModel isOpen={userModel} onClose={handleCloseModal} />
-      <header className="flex w-full drop-shadow-lg items-center z-10 justify-between h-[65px] text-[#48AFFF] bg-white md:px-10 px-2">
+      <header className="lg:pr-10 md:pr-3 lg:ps-0 md:-ms-3  flex w-full drop-shadow-lg items-center z-10 justify-between h-[65px] text-[#48AFFF] bg-white ">
         {/* <h1 className="text-white font-bold text-[32px] flex-1">JiJi</h1> */}
         <div className="flex-1 flex ">
-          <Link className="relative  h-[120px] md:w-[250px] w-[175px]" href="/">
+          <Link
+            className="relative h-[120px] w-[150px] sm:w-[200px] lg:w-[250px] md:w-[200px]"
+            href="/"
+          >
             <Image className=" object-contain" src={"/logo.png"} fill />
           </Link>
           <div className="flex-1 " />
@@ -184,14 +177,14 @@ export default function Header() {
           </div>
         )}
         {pageBuilding ? (
-          <div className="flex  flex-1 items-center justify-end space-x-6">
+          <div className="flex  flex-1 items-center justify-end md:gap-4 gap-3 mr-2">
             <ProfilePlaceHolder button={true} />
             <ProfilePlaceHolder />
           </div>
         ) : user?.token ? (
-          <div className="flex  flex-1 items-center justify-end md:space-x-6 space-x-2">
+          <div className="flex  flex-1 items-center justify-end md:space-x-6 sm:space-x-4 space-x-3">
             <Link href={user?.active ? "/sell" : `/otp/?email=${user?.email}`}>
-              <button className="bg-[#48AFFF] md:text-auto text-sm  text-white md:px-6 px-2 py-2.5 rounded-md">
+              <button className="bg-[#48AFFF]  sm:text-sm text-[12px]  text-white lg:px-6 md:px-4 sm:px-3 px-2.5  lg:py-2.5 md:py-2 py-1  rounded-md">
                 POST ADS
               </button>
             </Link>
@@ -206,16 +199,16 @@ export default function Header() {
             <div></div>
           </div>
         ) : (
-          <div className="flex  flex-1 items-center justify-end space-x-6">
+          <div className="flex  flex-1 items-center justify-end lg:space-x-6 md:space-x-4 sm:space-x-3 space-x-2 sm:mr-3 mr-1">
             <button
               onClick={() => handleOpenModal("login")}
-              className="text-sm border border-[#48AFFF] p-2 rounded-md px-4"
+              className=" border border-[#48AFFF]  text-sm whitespace-nowrap  lg:px-6 md:px-4 sm:px-3 px-2.5  lg:py-2.5 md:py-2 py-1  rounded-md"
             >
               Log In
             </button>
             <button
               onClick={() => handleOpenModal("register")}
-              className="text-sm border border-[#48AFFF] p-2 rounded-md px-4"
+              className=" border border-[#48AFFF] text-sm whitespace-nowrap   lg:px-6 md:px-4 sm:px-3 px-2.5  lg:py-2.5 md:py-2 py-1  rounded-md"
             >
               Sign Up
             </button>

@@ -2,16 +2,16 @@ import React from "react";
 
 export default function Page() {
   return (
-    <div className="py-8 max-w-[1000px] mx-auto md:px-20 px-3 min-h-[calc(100vh-70px)]">
-      <h3 className="text-2xl font-semibold mb-4 underline underline-offset-2">
+    <div className="md:py-8 py-5 max-w-[1000px] mx-auto md:px-20 px-3 min-h-[calc(100vh-70px)]">
+      <h3 className="md:text-2xl text-xl font-semibold mb-3  underline underline-offset-2">
         Terms and Conditions
       </h3>
-      <section className="space-y-4">
+      <section className="">
         <div>
-          <h4 className="text-[16px] font-medium">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
             1) TERMS USING NESMASPOINT CLASSIFIED ADS MARKETPLACE
           </h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             Your acceptance and compliance with the Terms and Conditions are
             prerequisites for accessing and utilizing the information,
             materials, and services available on this platform. NesMasPoint owns
@@ -34,8 +34,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">2) DISCLAIMER</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            2) DISCLAIMER
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             YOU AGREE THAT YOU ARE SOLELY RESPONSIBLE FOR YOUR SAFETY AND
             TRANSACTIONS ON THIS PLATFORM WITH THIRD PARTY. We provide all
             services "as is," "as available," basis and we solely disclaim any
@@ -63,9 +65,11 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">3) USER CONDUCT</h4>
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            3) USER CONDUCT
+          </h4>
 
-          <div className="text-slate-700 mt-1 pl-4">
+          <div className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             <p>
               BY USING THIS PLATFORM, YOU AGREE THAT YOU ARE 15 YEARS AND ABOVE,
               AND YOU WILL NOT POST, OR EMAIL ANY OF THIS:
@@ -111,8 +115,10 @@ export default function Page() {
           </div>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">4) ABUSE</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            4) ABUSE
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             It is required that NesMasPoint and its users collaborate to
             maintain proper functioning of the platform and ensure the safety of
             everyone. It is advisable for you to report issues, offensive
@@ -127,8 +133,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">5) POSTING POLICY</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            5) POSTING POLICY
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             Upon request by the Administrator, user shall provide necessary
             documents to validate right of ownership of item to be listed or
             listed on the platform. The Administrator has the right to decline,
@@ -139,8 +147,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">6) SERVICES</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            6) SERVICES
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             NesMasPoint is a Classified Ads Marketplace. NesMasPoint provides
             sellers and buyers an avenue to announce their products and choose
             which meets their preferences. NesMasPoint has no direct influence
@@ -150,8 +160,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">7) FEES</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            7) FEES
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             In general, NesMasPoint Classified Ads Marketplace is free use.
             However, there may be fees associated with certain services, and if
             any charges apply, it will be disclosed to you, and you will be able
@@ -161,8 +173,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">8) INFRINGEMENT</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            8) INFRINGEMENT
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             NesMasPoint Classified Ads Marketplace values and acknowledges the
             intellectual property of its users and others and expects its users
             to do the same.
@@ -176,8 +190,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">9) INTELLECTUAL PROPERTY</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            9) INTELLECTUAL PROPERTY
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             NesMasPoint owns or holds the necessary licenses for its platform
             and content, including all to copyrights, trademarks, patent, and
             other proprietary rights.
@@ -191,8 +207,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">10) LIMITATION OF LIABITY</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            10) LIMITATION OF LIABITY
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             NesMasPoint shall in no event be LIABLE for any direct, indirect,
             incidental, special, consequential, or exemplary damages that may
             occur as a result of your use of the platform.
@@ -204,8 +222,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">11) INDEMNITY</h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
+            11) INDEMNITY
+          </h4>
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             You agree to indemnify and hold NesMasPoint, its officers, licensors
             and partners, subsidiaries, affiliates, successors, assigns,
             directors, agents, representatives, service providers, suppliers and
@@ -221,10 +241,10 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h4 className="text-[16px] font-medium">
+          <h4 className="md:text-[18px] text-base text-gray-600 font-medium">
             12) GENARAL LAW AND JURISDICTION
           </h4>
-          <p className="text-slate-700 mt-1 pl-4">
+          <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
             The Terms shall be governed by the laws of the Republic of Nigeria.
             Any disputes related to the Terms, including questions about its
             validity, existence, or termination, will be resolved through

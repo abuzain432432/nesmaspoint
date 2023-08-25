@@ -19,7 +19,7 @@ export default function Footer() {
         { label: "Safety Tips", href: "safetyTips" },
         { label: "Contact", href: "contact" },
         { label: "FAQ", href: "faq" },
-        { label: "Blog", href: "blog" },
+        { label: "Blog" },
       ],
     },
     { title: "Our Apps", tabs: [{ label: "Cooming Soon" }] },
@@ -34,19 +34,19 @@ export default function Footer() {
     {
       title: "Ad Posting/Promotional Packages:",
       tabs: [
-        { label: "Post Free" },
-        { label: "Best" },
-        { label: "Boost" },
-        { label: "Premium Boost" },
-        { label: "Premium Boost Plus" },
+        { label: "Post Free", href: "packages" },
+        { label: "Best", href: "packages" },
+        { label: "Boost", href: "packages" },
+        { label: "Premium Boost", href: "packages" },
+        { label: "Premium Boost Plus", href: "packages" },
       ],
     },
   ];
   return (
-    <div className="mt-0 gradient-sidebar grid grid-cols-2 gap-6 md:grid-cols-5 sm:flex-row justify-between text-white px-10 py-6">
+    <div className="mt-0 gradient-sidebar gap-y-4 md:gap-y-16 grid grid-cols-2  xl:gap-x-6 md:gap-x-2 md:grid-cols-3 xl:grid-cols-5 lg:grid-cols-4  justify-between text-white lg:px-8 px-4 md:px-4 xl:px-10 py-6">
       {footerData.map((item) => (
         <div>
-          <h4 className="text-[18px] font-semibold mb-4">{item.title}</h4>
+          <h4 className="text-[18px]  font-semibold mb-4">{item.title}</h4>
           <ul className="space-y-2">
             {item.tabs.map((tab) => (
               <li className="text-sm pl-2 cursor-pointer">

@@ -2,12 +2,12 @@ import React from "react";
 
 export default function Page() {
   return (
-    <div className="py-8 max-w-[1000px] mx-auto md:px-20 px-3 min-h-[calc(100vh-70px)]">
-      <h3 className="text-2xl font-semibold mb-4 underline underline-offset-[4px]">
+    <div className="md:py-8 py-5 max-w-[1000px] mx-auto md:px-20 px-3 min-h-[calc(100vh-70px)]">
+      <h3 className="md:text-2xl text-xl font-semibold mb-3  underline underline-offset-2">
         Privacy Policy
       </h3>
 
-      <p className="text-slate-700 mt-1 pl-4">
+      <p className="text-slate-700 mt-1 mb-3 md:pl-4 pl-2">
         BY USING THE SERVICE, YOU PROMISE US THAT:
         <br />
         (I) you have read, comprehended, and consented to this Privacy Policy,
@@ -21,7 +21,7 @@ export default function Page() {
       </p>
       <section className="text-slate-700 mt-1 pl-4">
         <div>
-          <h6 className="text-[15px] font-medium text-black mt-4">
+          <h6 className="md:text-[18px] text-base text-gray-600 font-medium">
             1) PERSONAL INFORMATION THAT WE COLLECT
           </h6>
           <p>
@@ -81,10 +81,10 @@ export default function Page() {
           </ul>
         </div>
         <div>
-          <h6 className="text-[15px] font-medium text-black mt-4">
+          <h6 className="md:text-[18px] text-base text-gray-600 font-medium mt-4 mb-1">
             2) DATA PROTECTION STATEMENT
           </h6>
-          <ul className="pl-4 list-disc mt-2">
+          <ul className="pl-4 list-disc ">
             <li>
               We will only retain personal information as long as necessary for
               the fulfilment of those purposes.
@@ -131,7 +131,7 @@ export default function Page() {
           </ul>
         </div>
         <div>
-          <h6 className="text-[15px] font-medium text-black mt-4 mb-2">
+          <h6 className="md:text-[18px] text-base text-gray-600 font-medium mt-4 mb-1">
             3) PRIVACY POLICY MODIFICATION
           </h6>
           <p>
@@ -139,7 +139,7 @@ export default function Page() {
           </p>
         </div>
         <div>
-          <h6 className="text-[15px] font-medium text-black mt-4 mb-2">
+          <h6 className="md:text-[18px] text-base text-gray-600 font-medium mt-4 mb-1">
             4) TRANSFER OF DATA COLLECTED
           </h6>
           <p>

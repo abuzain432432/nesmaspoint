@@ -358,7 +358,8 @@ const categoriesArray = [
   },
   {
     title: "Job Seekers` CVS",
-    image: "https://cdn-images.zety.com/images/zety/landings/builder/uk/cv-builder-templates@3x.png",
+    image:
+      "https://cdn-images.zety.com/images/zety/landings/builder/uk/cv-builder-templates@3x.png",
     subCategories: [
       { title: "Human Resources", image: "" },
       { title: "Contractor", image: "" },

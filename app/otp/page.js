@@ -91,7 +91,7 @@ export default function Page() {
     }
   };
   return (
-    <div className="h-[calc(100vh-300px)]   mt-[250px] text-center">
+    <div className="md:px-12 px-2.5 py-10 mb-4  h-[calc(100vh-65px)]  flex flex-col justify-center">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -106,13 +106,13 @@ export default function Page() {
       />
       <form
         onSubmit={sentOtp}
-        className="flex flex-col items-center mx-auto max-w-[600px] px-6 py-6  rounded-lg "
+        className="md:w-[550px] sm:w-[500px] w-full sm:px-0 px-4 mx-auto "
       >
         <div>
-          <h2 className="text-2xl whitespace-nowrap text-center mb-1 font-medium text-gray-700">
+          <h2 className="md:text-2xl sm:text-xl text-lg md:leading-[1.2] leading-[1.1] text-center md:mb-1 mb-2 font-medium text-gray-700">
             Please enter the ONE-TIME Password(otp) to verify your account
           </h2>
-          <h3 className="text-base whitespace-nowrap text-center mb-6 font-medium text-gray-600">
+          <h3 className="sm:text-base text-[14px] md:leading-[1.4] leading-[1.1]  text-center mb-6 font-medium text-gray-600">
             <span>We have sent an OTP to your email</span>
             <span className="ms-2 text-gray-700">
               {searchParams.get("email")}
@@ -122,16 +122,16 @@ export default function Page() {
         <input
           type="text"
           placeholder="Enter Otp"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 md:py-2 sm:py-1.5 py-1 mb-4"
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
         />
-        <div>
+        <div className="flex items-center flex-col">
           <button
-            className={`flex items-center text-white rounded-lg justify-center  w-full px-12 ${
+            className={`flex items-center text-white rounded-lg justify-center  md:px-12 px-8 ${
               loading
-                ? "bg-blue-300 pointer-events-none py-1"
-                : "bg-[#48AFFF]  py-3"
+                ? "bg-blue-300 pointer-events-none md:py-1 py-0"
+                : "bg-[#48AFFF]  py-1.5"
             }`}
           >
             Validate
@@ -140,7 +140,7 @@ export default function Page() {
           <p
             role="button"
             onClick={handleResendOtp}
-            className="text-gray-800 text-base mt-4"
+            className="text-gray-800 md:text-base text-sm md:mt-4 sm:mt-3 mt-2"
           >
             Resend One-Time Password
           </p>

@@ -66,17 +66,17 @@ function DashboardUserAds() {
   }
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 mb-8">
       {!data?.length ? (
-        <h3 className="text-2xl  text-center mt-20 font-semibold w-full">
+        <h3 className="md:text-2xl text-xl px-4  text-center mt-20 font-semibold w-full">
           No Ads Found click on the post ads button to post ads
         </h3>
       ) : (
         <>
-          <h1 className="text-3xl mb-6 text-center mt-10 font-semibold w-full">
-            Your's ads
+          <h1 className="xl:text-3xl md:text-2xl text-xl md:mb-6 sm:mb-4 mb-2 text-center md:mt-10 mt-4 font-semibold w-full">
+            Your ads
           </h1>
-          <div className="grid w-[90%] mx-auto items-start grid-cols-2 lg:grid-cols-4 gap-6 ">
+          <div className="grid w-[90%] mx-auto items-start sm:grid-cols-2 xl:grid-cols-4 gap-6 ">
             {data?.map((ad) => (
               <AdsCard ad={ad} userAdd={true} onAdDelete={handleDelete} />
             ))}

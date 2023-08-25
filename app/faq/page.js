@@ -110,8 +110,10 @@ export default function FAQ() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-8">Frequently Asked Questions</h1>
+    <div className="max-w-3xl mx-auto md:p-8 p-6">
+      <h1 className="md:text-3xl text-2xl leading-[1.1] font-bold sm:mb-6 mb-3 md:mb-8">
+        Frequently Asked Questions
+      </h1>
       <Collapse
         accordion
         activeKey={activePanel}

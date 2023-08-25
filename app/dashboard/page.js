@@ -25,7 +25,7 @@ function Page() {
   }
 
   return (
-    <section className="min-h-[92vh] flex">
+    <section className="min-h-[92vh] md:flex">
       <ToastContainer
         position="top-right"
         autoClose={5000}

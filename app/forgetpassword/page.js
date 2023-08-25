@@ -46,7 +46,7 @@ function page() {
     }
   };
   return (
-    <div className="md:px-12 px-2.5 py-10 mb-4  h-[calc(100vh-300px)]  flex flex-col justify-center">
+    <div className="md:px-12 px-2.5 py-10 mb-4  h-[calc(100vh-65px)]  flex flex-col justify-center">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -59,20 +59,23 @@ function page() {
         pauseOnHover
         theme="light"
       />
-      <form className="w-[550px] mx-auto" onSubmit={handleForgetPassword}>
-        <h2 className="text-2xl w-full font-semibold mb-4 ">
+      <form
+        className="md:w-[550px] sm:w-[500px] w-full sm:px-0 px-4 mx-auto"
+        onSubmit={handleForgetPassword}
+      >
+        <h2 className="md:text-2xl text-xl w-full font-semibold md:mb-4 mb-2.5">
           Enter your email address
         </h2>
         <input
           type="email"
           placeholder="Email"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 md:py-2 py-1.5 md:mb-4 mb-2"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <button
           disabled={loading}
-          className={`px-10 flex items-center rounded-lg   text-white ${
+          className={`md:px-10 px-7 flex items-center rounded-lg  text-white ${
             loading
               ? "bg-blue-300 pointer-events-none "
               : "bg-blue-500 py-[6px]"

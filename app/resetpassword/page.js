@@ -127,7 +127,7 @@ function page() {
   };
 
   return (
-    <div className="md:px-12 px-2.5 py-10 mb-4  h-[calc(100vh-300px)]  flex flex-col justify-center">
+    <div className="md:px-12 px-2.5 py-10 mb-4  h-[calc(100vh-65px)]  flex flex-col justify-center">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -140,7 +140,10 @@ function page() {
         pauseOnHover
         theme="light"
       />
-      <form className="w-[550px] mx-auto" onSubmit={handleForgetPassword}>
+      <form
+        className="md:w-[550px] sm:w-[500px] w-full sm:px-0 px-4 mx-auto"
+        onSubmit={handleForgetPassword}
+      >
         <h2 className="text-2xl w-full font-semibold mb-4 ">Reset Password</h2>
         <input
           type="text"

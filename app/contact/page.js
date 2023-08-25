@@ -8,12 +8,12 @@ import {
 } from "react-icons/ai";
 export default function Page() {
   return (
-    <section className="mx-auto w-[90%] mt-16 max-w-3xl xl:mb-28 flex flex-col  min-h-[74vh] lg:mb-16 relative gap-16">
+    <section className="md:py-8 py-5 max-w-[1000px] mx-auto md:px-20 sm:px-6 px-4 min-h-[calc(100vh-65px)]">
       <div>
         <h4 className="font-semibold mb-2 md:text-[20px] underline underline-offset-2  text-[14px] text-slate-700">
           CONTACT US
         </h4>
-        <h2 className="xl:text-4xl mb-14 lg:text-3xl sm:text-3xl text-2xl  leading-[1.1] font-semibold lg:leading-[1.15] text-gray-700">
+        <h2 className="xl:text-4xl md:mb-14 sm:mb-8 mb-4 lg:text-3xl sm:text-3xl text-2xl   leading-[1.1] font-semibold lg:leading-[1.15] text-gray-700">
           Let’s talk about NesMasPoint
           <br /> Love to hear from you!
         </h2>
@@ -47,7 +47,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="mt-20">
+        <div className="md:mt-20 sm:mt-12 mt-6">
           <h3 className="mb-2 text-lg font-medium">
             Follow us on social media
           </h3>

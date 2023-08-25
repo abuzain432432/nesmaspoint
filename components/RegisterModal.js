@@ -20,7 +20,19 @@ const RegisterModal = ({ isOpen, onClose }) => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true);
+
+    if (!lastName || !lastName || !email || !passwordConfirm || !password) {
+      return toast.error("All feilds are required.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
     if (!emailRegex.test(email)) {
       return toast.error("Please enter a valid email address", {
         position: "top-right",
@@ -58,6 +70,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
       });
     }
     try {
+      setLoading(true);
       const { data } = await axios.post(`${URL}/api/v1/users/signup`, {
         firstName,
         lastName,
@@ -133,54 +146,54 @@ const RegisterModal = ({ isOpen, onClose }) => {
       <form
         onSubmit={handleRegister}
         onClick={(e) => e.stopPropagation()}
-        className="bg-white relative rounded-lg w-[500px] p-6"
+        className="bg-white relative rounded-lg w-[90%] max-w-[500px] md:p-6 p-4"
       >
         <div
           onClick={onCloseModel}
           role="button"
           className="absolute cursor-pointer right-4 top-4"
         >
-          <IoMdClose size={30} />
+          <IoMdClose className="md:text-4xl sm:text-3xl text-2xl" />
         </div>
 
         <h2 className="text-2xl font-semibold mb-4 text-center">Register</h2>
         <input
           type="text"
           placeholder="First Name"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 sm:py-2 py-1.5 mb-4"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Last Name"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 sm:py-2 py-1.5 mb-4"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Email"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 sm:py-2 py-1.5 mb-4"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 sm:py-2 py-1.5 mb-4"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
           type="password"
           placeholder="Confirm Password"
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 sm:py-2 py-1.5 mb-4"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
         <button
-          className="bg-[#48AFFF] disabled:opacity-70 max-h-10 text-white rounded-lg px-4 py-2 w-full flex space-x-4 justify-center items-center"
+          className="bg-[#48AFFF] disabled:opacity-70 max-h-10 text-white rounded-lg px-4 sm:py-2 py-1.5 w-full flex space-x-4 justify-center items-center"
           disabled={loading}
         >
           Register {loading && <Loading />}
