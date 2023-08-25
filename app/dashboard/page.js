@@ -2,7 +2,6 @@
 import DashboardSidebar from "@/components/DashboardSidebar";
 import DashboardSetting from "@/components/DashboardSetting";
 import DashboardUserAds from "@/components/DashboardUserAds";
-import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 import Loading from "@/components/Loading";
 import { useEffect, useState } from "react";
@@ -26,18 +25,6 @@ function Page() {
 
   return (
     <section className="min-h-[92vh] md:flex">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       {pageBuilding ? (
         <Loading />
       ) : (

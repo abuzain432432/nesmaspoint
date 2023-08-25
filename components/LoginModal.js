@@ -3,7 +3,7 @@ import { login } from "@/redux/features/authSlice";
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Loading from "./LoadingSpinner";
 import { useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";

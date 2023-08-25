@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { URL } from "@/config";
 import axios from "axios";
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { activate, auth } from "@/redux/features/authSlice";
@@ -92,18 +92,6 @@ export default function Page() {
   };
   return (
     <div className="md:px-12 px-2.5 py-10 mb-4  h-[calc(100vh-65px)]  flex flex-col justify-center">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <form
         onSubmit={sentOtp}
         className="md:w-[550px] sm:w-[500px] w-full sm:px-0 px-4 mx-auto "

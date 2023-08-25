@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { colorData } from "@/Data/FilterData";
 import PromoteAd from "../PromoteAd";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addData } from "@/redux/features/adSlice";

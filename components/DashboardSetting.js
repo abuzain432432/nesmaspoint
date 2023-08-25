@@ -6,7 +6,7 @@ import { login } from "@/redux/features/authSlice";
 import Loading from "./LoadingSpinner";
 
 import Image from "next/image";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { URL as baseURL } from "@/config";
 const validImageFormats = [
