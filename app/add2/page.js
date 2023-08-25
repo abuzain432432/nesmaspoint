@@ -101,7 +101,7 @@ export default function Page() {
       formData.append("boostValue", selectedAd.boostValue);
       formData.append("phoneNumber", phoneNumber);
       formData.append("title", title);
-      formData.append("description", encodeURIComponent(description));
+      formData.append("description", description);
       formData.append("price", price);
       formData.append("name", name);
       formData.append("priceType", negotiable?.value);

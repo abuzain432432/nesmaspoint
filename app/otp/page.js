@@ -6,15 +6,17 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { activate, auth } from "@/redux/features/authSlice";
 import { useSearchParams } from "next/navigation";
+
+import { activate, auth } from "@/redux/features/authSlice";
 import Loading from "@/components/LoadingSpinner";
+import OtpTime from "@/components/OtpTime";
 export default function Page() {
   const [otp, setOtp] = useState("");
-  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
+  const searchParams = useSearchParams();
   const handleResendOtp = async () => {
     const email = searchParams.get("email");
     if (!email) {
@@ -99,7 +101,7 @@ export default function Page() {
           <h2 className="md:text-2xl sm:text-xl text-lg md:leading-[1.2] leading-[1.1] text-center md:mb-1 mb-2 font-medium text-gray-700">
             Please enter the ONE-TIME Password(otp) to verify your account
           </h2>
-          <h3 className="sm:text-base text-[14px] md:leading-[1.4] leading-[1.1]  text-center mb-6 font-medium text-gray-600">
+          <h3 className="sm:text-base text-[14px] md:leading-[1.4] leading-[1.1]  text-center md:mb-6 mb-3 font-medium text-gray-600">
             <span>We have sent an OTP to your email</span>
             <span className="ms-2 text-gray-700">
               {searchParams.get("email")}
@@ -109,7 +111,7 @@ export default function Page() {
         <input
           type="text"
           placeholder="Enter Otp"
-          className="w-full border border-gray-300 rounded-lg px-3 md:py-2 sm:py-1.5 py-1 mb-4"
+          className="w-full border border-gray-300 rounded-lg px-3 md:py-2 sm:py-1.5 py-1 md:mb-4 mb-2"
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
         />
@@ -124,13 +126,7 @@ export default function Page() {
             Validate
             {loading && <Loading />}
           </button>
-          <p
-            role="button"
-            onClick={handleResendOtp}
-            className="text-gray-800 md:text-base text-sm md:mt-4 sm:mt-3 mt-2"
-          >
-            Resend One-Time Password
-          </p>
+          <OtpTime onTimeComplete={handleResendOtp} />
         </div>
       </form>
     </div>

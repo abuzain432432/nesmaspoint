@@ -1,25 +1,23 @@
 "use client";
-import Banner from "@/components/Banner";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Sidebar from "@/components/Sidebar";
-import HomeBanner from "@/components/HomeBanner";
-import AdsData from "@/Data/AdsData";
+
 import AdsCard from "@/components/AdsCard";
-import axios from "axios";
-import { URL } from "@/config";
+
+
 import Pagination from "@/components/Pagination";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+
 import Loading from "@/components/Loading";
-import { addData } from "@/redux/features/addCollection";
+
 
 export default function Page() {
-  const dispatch = useDispatch();
+
   const { loading } = useSelector((state) => state?.adsCollection);
   const { data } = useSelector((state) => state?.adsCollection);
 
   const page = useSelector((state) => state.paginationReducer.page);
-  const LIMIT = 20;
+
 
   if (loading) {
     return (

@@ -3,11 +3,10 @@ import { useState } from "react";
 import { URL } from "@/config";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FlagFilled } from "@ant-design/icons";
 import Loading from "@/components/LoadingSpinner";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-
+import OtpTime from "@/components/OtpTime";
 function page() {
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -155,7 +154,7 @@ function page() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <div className="w-fit">
+        <div className="w-full">
           <button
             disabled={loading}
             type="submit"
@@ -168,14 +167,15 @@ function page() {
             <span>Reset</span>
             {loading && <Loading />}
           </button>
-          <p
+          <OtpTime onTimeComplete={handleResetResetPassOtp} />
+          {/* <p
             onClick={handleResetResetPassOtp}
             className="text-center mt-2 "
             typeof="button"
             role="button"
           >
             Resend OTP
-          </p>
+          </p> */}
         </div>
       </form>
     </div>

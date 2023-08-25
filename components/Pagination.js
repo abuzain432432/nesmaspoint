@@ -14,7 +14,9 @@ export default function Pagination({ page, totalPages, setPage }) {
       >
         Prev
       </button>
-      <span>{page}</span>
+      <span>
+        {page}/{totalPages}
+      </span>
       <button
         onClick={() => dispatch(paginate(1))}
         disabled={page >= totalPages}

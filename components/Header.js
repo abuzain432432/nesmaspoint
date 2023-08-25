@@ -12,19 +12,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { URL } from "@/config";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import ProfilePlaceHolder from "./ProfilePlaceHolder";
 import {
   addData,
   finishLoading,
   startLoading,
 } from "@/redux/features/addCollection";
-import { CancelToken } from "axios";
-import { paginate, resetPagination } from "@/redux/features/paginationSlice";
+import { resetPagination } from "@/redux/features/paginationSlice";
 import UserModel from "./UserModel";
 import { onSearchChange } from "@/redux/features/searchSlice";
 import { onModelToggle } from "@/redux/features/modelSlice";
-import { revalidateTag } from "next/cache";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -35,7 +32,7 @@ export default function Header() {
   const pathname = usePathname();
   const user = useSelector((state) => state.authReducer);
   const page = useSelector((state) => state.paginationReducer.page);
-  const LIMIT = 5;
+  const LIMIT = 8;
   const dispatch = useDispatch();
   const modelName = useSelector((state) => state.modelReducer);
   const [pageBuilding, setPageBuilding] = useState(true);
