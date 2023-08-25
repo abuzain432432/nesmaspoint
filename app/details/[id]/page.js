@@ -5,7 +5,7 @@ import Carousal from "@/components/Carousal";
 import { URL } from "@/config";
 import AdsData from "@/Data/AdsData";
 import { toast } from "react-toastify";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { AiOutlineEye } from "react-icons/ai";
 import { MdVisibilityOff } from "react-icons/md";
 import { images } from "@/next.config";
@@ -52,8 +52,6 @@ export default function Page({ params }) {
       setLoading(false);
     }
   };
-  console.log(user);
-  console.log(ad);
 
   const onModelOpen = (name) => {
     dispatch(onModelToggle(name));
@@ -94,7 +92,6 @@ export default function Page({ params }) {
       theme: "light",
     });
   };
-  console.log(searchParams.get("user"));
   return (
     <div className=" md:px-6 lg:px-8 xl:px-16 sm:px-10 px-2 pt-6  xl:py-16 md:py-10 mb-10  ">
       <div className="flex flex-col md:gap-0 sm:gap-10 gap-5 md:space-y-0 md:flex-row md:space-x-4 w-full">

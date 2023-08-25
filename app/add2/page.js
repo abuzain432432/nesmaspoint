@@ -96,14 +96,12 @@ export default function Page() {
           formData.append(pair[0], pair[1]);
         }
       }
-      console.log(description);
-      const encodedText = encodeURIComponent(description);
-      console.log(description);
+
       formData.append("condition", condition?.value);
       formData.append("boostValue", selectedAd.boostValue);
       formData.append("phoneNumber", phoneNumber);
       formData.append("title", title);
-      formData.append("description", description);
+      formData.append("description", encodeURIComponent(description));
       formData.append("price", price);
       formData.append("name", name);
       formData.append("priceType", negotiable?.value);

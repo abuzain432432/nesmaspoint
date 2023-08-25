@@ -220,18 +220,6 @@ function DashboardSetting() {
   };
   return (
     <div className="flex-1">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <form
         onSubmit={handleSettingForm}
         className="2xl:w-[50%] lg:w-[60%] md:w-[70%] w-[100%] md:px-0 px-4 sm:px-8 mx-auto md:my-16 sm:my-10 my-8"
