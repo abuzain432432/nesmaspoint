@@ -31,7 +31,6 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { onModelToggle } from "@/redux/features/modelSlice";
 import Loading from "@/components/Loading";
-import { usePathname } from "next/navigation";
 
 export default function Page({ params }) {
   const [ad, setAd] = useState({});
@@ -41,7 +40,6 @@ export default function Page({ params }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const getAdData = async () => {
     try {
@@ -85,7 +83,7 @@ export default function Page({ params }) {
     );
   }
   const hadleTestingFeature = () => {
-    toast.success("Comming soon", {
+    toast.success("Coming soon", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -139,20 +137,17 @@ export default function Page({ params }) {
                 </span>
               ))}
               <div className="flex gap-3 items-center">
-                {searchParams.get("user") && (
-                  <div className="flex text-gray-400 gap-1 items-center">
-                    <AiOutlineEye />
-                    <p>{ad.views}</p>
-                    <p>views</p>
-                  </div>
-                )}
-                {searchParams.get("user") && (
-                  <div className="flex gap-1 text-gray-400  items-center">
-                    <MdVisibilityOff />
-                    <p>{ad.impressions}</p>
-                    <p>impressions</p>
-                  </div>
-                )}
+                <div className="flex text-gray-400 gap-1 items-center">
+                  <AiOutlineEye />
+                  <p>{ad.views}</p>
+                  <p>views</p>
+                </div>
+
+                <div className="flex gap-1 text-gray-400  items-center">
+                  <MdVisibilityOff />
+                  <p>{ad.impressions}</p>
+                  <p>impressions</p>
+                </div>
               </div>
             </div>
             <p className="text-gray-600 my-2">{ad?.description}</p>

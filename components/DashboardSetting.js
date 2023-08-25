@@ -6,7 +6,7 @@ import { login } from "@/redux/features/authSlice";
 import Loading from "./LoadingSpinner";
 
 import Image from "next/image";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 import { URL as baseURL } from "@/config";
 const validImageFormats = [
@@ -75,8 +75,8 @@ function DashboardSetting() {
     }
 
     const formData = new FormData();
-    if (user?.lastName !== lastName) formData.append("firstName", firstName);
-    if (user?.firstName !== firstName) formData.append("lastName", lastName);
+    if (user?.lastName !== lastName) formData.append("lastName", lastName);
+    if (user?.firstName !== firstName) formData.append("firstName", firstName);
     if (images?.file) formData.append("photo", images?.file);
 
     const requestHeaders = {
@@ -84,6 +84,7 @@ function DashboardSetting() {
     };
     seIsAccountSettingLoading(true);
     try {
+      console.log(user?.lastName !== lastName);
       const { data } = await axios.patch(
         `${baseURL}/api/v1/users/me`,
         formData,
@@ -219,6 +220,18 @@ function DashboardSetting() {
   };
   return (
     <div className="flex-1">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <form
         onSubmit={handleSettingForm}
         className="2xl:w-[50%] lg:w-[60%] md:w-[70%] w-[100%] md:px-0 px-4 sm:px-8 mx-auto md:my-16 sm:my-10 my-8"

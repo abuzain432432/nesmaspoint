@@ -62,9 +62,7 @@ export default function AdsCard({ ad, userAdd = false, onAdDelete }) {
 
   return (
     <div
-      onClick={() =>
-        router.push(`/details/${ad._id}?user=${userAdd ? userAdd : ""}`)
-      }
+      onClick={() => router.push(`/details/${ad._id}`)}
       className="group rounded-md overflow-hidden cursor-pointer relative"
     >
       <div
