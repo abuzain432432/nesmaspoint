@@ -138,6 +138,7 @@ export default function Header() {
       />
       <LoginModal isOpen={loginModal} onClose={handleCloseModal} />
       <RegisterModal isOpen={registerModal} onClose={handleCloseModal} />
+
       <header className="lg:pr-10 md:pr-3 lg:ps-0 md:-ms-3  flex w-full drop-shadow-lg items-center z-10 justify-between h-[65px] text-[#48AFFF] bg-white ">
         {/* <h1 className="text-white font-bold text-[32px] flex-1">JiJi</h1> */}
         <div className="flex-1 flex ">
