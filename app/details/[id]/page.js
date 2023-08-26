@@ -39,7 +39,7 @@ export default function Page({ params }) {
   const user = useSelector((state) => state?.authReducer);
   const router = useRouter();
   const dispatch = useDispatch();
-  const pathname = usePathname();
+  const pathname = location.href;
 
   const getAdData = async () => {
     try {

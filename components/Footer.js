@@ -17,7 +17,7 @@ export default function Footer() {
       tabs: [
         // { label: "Email (TBN)", href: "email" },
         { label: "Safety Tips", href: "safetyTips" },
-        { label: "Contact", href: "contact" },
+        { label: "Contact Us", href: "contact" },
         { label: "FAQ", href: "faq" },
         { label: "Blog" },
       ],
@@ -28,7 +28,7 @@ export default function Footer() {
       tabs: [
         { label: "Facebook: @nesmaspoint" },
         { label: "Instagram: @nesmaspoint" },
-        { label: "Twitter: @nesmaspoint" },
+        { label: "X: @nesmaspoint" },
       ],
     },
     {
