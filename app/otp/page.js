@@ -77,7 +77,7 @@ export default function Page() {
       dispatch(activate({ ...JSON.parse(userData), active: true }));
       router.back();
     } catch (err) {
-      toast.error("Invalid Otp", {
+      toast.error(err?.response?.data?.message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { login } from "@/redux/features/authSlice";
 import Loading from "./LoadingSpinner";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "react-toastify";
 
@@ -33,6 +33,7 @@ function DashboardSetting() {
   const [isAccountSettingLoading, seIsAccountSettingLoading] = useState(false);
   let isChanged = false;
   const [isPhotoSelected, setIsPhotoSelected] = useState(false);
+  const router = useRouter();
 
   const imageRef = useRef();
   const onImageChange = (e) => {
@@ -116,6 +117,9 @@ function DashboardSetting() {
         progress: undefined,
         theme: "light",
       });
+      if (err?.response?.status == 403) {
+        router.push("/otp");
+      }
     } finally {
       seIsAccountSettingLoading(false);
     }
@@ -213,6 +217,9 @@ function DashboardSetting() {
           theme: "light",
         }
       );
+      if (err?.response?.status == 403) {
+        router.push("/otp");
+      }
     } finally {
       setIsPasswordChanging(false);
     }
