@@ -85,7 +85,9 @@ export default function AdsCard({ ad, userAdd = false, onAdDelete }) {
         </button> */}
         <div>
           <p className="text-sm line-clamp-1">{ad.title}</p>
-          <span className="text-[#48AFFF] text-[14px]">NGN {ad.price}</span>
+          <span className="text-[#48AFFF] text-[14px]">
+            NGN {new Intl.NumberFormat().format(ad.price)}
+          </span>
         </div>
         {userAdd && (
           <div

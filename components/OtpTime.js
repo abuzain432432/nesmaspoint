@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 const OtpTime = ({ onTimeComplete }) => {
   const [otpSent, setOtpSent] = useState(false);
-  const [time, setTime] = useState(120);
+  const [time, setTime] = useState(60);
 
   useEffect(() => {
     if (time > 0) {
@@ -28,7 +28,7 @@ const OtpTime = ({ onTimeComplete }) => {
         onClick={() => {
           console.log();
           if (time <= 0) {
-            setTime(120);
+            setTime(60);
             onTimeComplete();
           }
         }}

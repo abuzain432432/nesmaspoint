@@ -218,7 +218,7 @@ export default function Page({ params }) {
         <div className="2xl:w-[375px] lg:w-[300px] md:w-[270px]  xl:w-[350px] w-full  md:gap-x-0  sm:gap-x-6 gap-x-4 gap-y-4 sm:gap-y-6 md:flex-col md:gap-4 md:flex grid md:grid-cols-1 grid-cols-1 sm:grid-cols-2 space-y-5">
           <div className="bg-white p-4 shadow-md rounded-md clear-margin">
             <h3 className="font-semibold text-[24px] mb-2.5 text-center">
-              NGN {ad.price} {ad?.priceType}
+              NGN {new Intl.NumberFormat().format(ad.price)} {ad?.priceType}
             </h3>
             <button
               onClick={hadleTestingFeature}
