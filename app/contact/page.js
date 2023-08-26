@@ -5,6 +5,7 @@ import {
   AiOutlineAim,
   AiFillInstagram,
   AiFillTwitterCircle,
+  AiFillLinkedin,
 } from "react-icons/ai";
 export default function Page() {
   return (
@@ -51,7 +52,7 @@ export default function Page() {
           <h3 className="mb-2 text-lg font-medium">
             Follow us on social media
           </h3>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <a
               className="sm:text-4xl text-3xl text-primary font-medium"
               href="https://www.instagram.com/nesmaspoint/"
@@ -61,15 +62,21 @@ export default function Page() {
 
             <a
               className="sm:text-4xl text-3xl text-primary font-medium"
-              href="https://twitter.com/nesmaspoint/"
+              href="https://twitter.com/nesmaspoint"
             >
               <AiFillTwitterCircle color="#1C9CEA" />
             </a>
             <a
               className="sm:text-4xl text-3xl text-primary font-medium"
-              href="https://www.facebook.com/nesmaspoint/"
+              href="https://www.facebook.com/profile.php?id=100092978044834"
             >
               <AiFillFacebook color="#1C9CEA" />
+            </a>
+            <a
+              className="sm:text-4xl text-3xl text-primary font-medium"
+              href="https://www.linkedin.com/company/nesmaspoint/"
+            >
+              <AiFillLinkedin color="#1C9CEA" />
             </a>
           </div>
         </div>

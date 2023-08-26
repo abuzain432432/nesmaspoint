@@ -26,9 +26,19 @@ export default function Footer() {
     {
       title: "Social Media",
       tabs: [
-        { label: "Facebook: @nesmaspoint" },
-        { label: "Instagram: @nesmaspoint" },
-        { label: "X: @nesmaspoint" },
+        {
+          label: "Facebook: @nesmaspoint",
+          href: "https://www.facebook.com/profile.php?id=100092978044834",
+        },
+        {
+          label: "Linkdlen: @nesmaspoint",
+          href: "https://www.linkedin.com/company/nesmaspoint/",
+        },
+        {
+          label: "Instagram: @nesmaspoint",
+          href: "https://www.instagram.com/nesmaspoint/",
+        },
+        { label: "X: @nesmaspoint", href: "https://twitter.com/nesmaspoint" },
       ],
     },
     {

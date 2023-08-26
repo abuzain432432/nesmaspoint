@@ -68,9 +68,9 @@ export default function Page({ searchParams }) {
           </>
         ) : (
           <div className="">
-            <h3 className="lg:text-2xl sm:text-xl text-lg font-semibold text-slate-700 mb-4">
-              No Ad found .You can try anothe location or maybe another catagory
-              or sub-category
+            <h3 className="lg:text-2xl text-center sm:text-xl text-lg font-semibold text-slate-700 mb-4">
+              No Ad found .You can try another location or maybe another
+              catagory or sub-category
             </h3>
           </div>
         )}

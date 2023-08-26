@@ -252,7 +252,7 @@ export default function Page() {
             isTitleInvalid && isTitleFocus ? "mb-1" : "mb-4"
           } border-slate-300 px-4 py-2.5 rounded-md `}
           type="text"
-          placeholder="Enter Ad Title"
+          placeholder="Enter Ad Title*"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onFocus={() => setIsTitleFocus(true)}
@@ -311,7 +311,7 @@ export default function Page() {
         )}
         <input
           type="text"
-          placeholder="Ad Price"
+          placeholder="Ad Price*"
           className={`border w-full border-slate-300 resize-none px-4 py-2.5 rounded-md ${
             isPriceFocus && isPriceInvalid ? "mb-1" : "mb-4"
           }`}
@@ -347,7 +347,7 @@ export default function Page() {
           setValue={setNegotiable}
           options={negotiableOptions}
           name="negotiable"
-          placeholder="Price Type"
+          placeholder="Price Type*"
           onFocus={() => setIsNegotiableFocus(true)}
           onBlur={() => setIsNegotiableFocus(false)}
           hasError={isNegotiableFocus && isNegotiableInvalid}
@@ -358,7 +358,7 @@ export default function Page() {
         <div className="">
           <input
             type="text"
-            placeholder="Enter Your Phone Number"
+            placeholder="Enter Your Phone Number*"
             className="border w-full border-slate-300 resize-none px-4 py-2.5 rounded-md"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
