@@ -19,7 +19,6 @@ import {
   startLoading,
 } from "@/redux/features/addCollection";
 import { resetPagination } from "@/redux/features/paginationSlice";
-import UserModel from "./UserModel";
 import { onSearchChange } from "@/redux/features/searchSlice";
 import { onModelToggle } from "@/redux/features/modelSlice";
 import { usePathname } from "next/navigation";
@@ -28,7 +27,6 @@ export default function Header() {
   const [search, setSearch] = useState("");
   const [loginModal, setLoginModal] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
-  const [userModel, setUserModel] = useState(false);
   const pathname = usePathname();
   const user = useSelector((state) => state.authReducer);
   const page = useSelector((state) => state.paginationReducer.page);
@@ -53,7 +51,6 @@ export default function Header() {
     if (modelName === "login") {
       setLoginModal(true);
     } else if (modelName === "user") {
-      setUserModel(true);
     } else if (modelName === "register") {
       setRegisterModal(true);
     }
@@ -63,7 +60,6 @@ export default function Header() {
     if (name === "login") {
       setLoginModal(false);
     } else if (name === "user") {
-      setUserModel(false);
     } else {
       setRegisterModal(false);
     }
@@ -142,7 +138,7 @@ export default function Header() {
       />
       <LoginModal isOpen={loginModal} onClose={handleCloseModal} />
       <RegisterModal isOpen={registerModal} onClose={handleCloseModal} />
-      <UserModel isOpen={userModel} onClose={handleCloseModal} />
+
       <header className="lg:pr-10 md:pr-3 lg:ps-0 md:-ms-3  flex w-full drop-shadow-lg items-center z-10 justify-between h-[65px] text-[#48AFFF] bg-white ">
         {/* <h1 className="text-white font-bold text-[32px] flex-1">JiJi</h1> */}
         <div className="flex-1 flex ">

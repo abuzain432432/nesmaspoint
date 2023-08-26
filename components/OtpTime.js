@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 
 const OtpTime = ({ onTimeComplete }) => {
-  const [otpSent, setOtpSent] = useState(false);
-  const [time, setTime] = useState(60);
+  const [time, setTime] = useState(10);
 
   useEffect(() => {
     if (time > 0) {
@@ -19,21 +18,18 @@ const OtpTime = ({ onTimeComplete }) => {
   const timeString = `${String(mints).padStart(2, 0)}:${String(
     seconds
   ).padStart(2, 0)}`;
-
   return (
     <>
       <p
         role="button"
-        aria-disabled={time >= 0}
         onClick={() => {
-          console.log();
           if (time <= 0) {
-            setTime(60);
+            setTime(10);
             onTimeComplete();
           }
         }}
         className={` py-1.5 flex items-center text-gray-600 rounded-lg justify-center md:mt-4 mt-2  md:px-4 px-2 md:text-base text-sm  ${
-          time > 0 ? "cursor-not-allowed" : "cursor-pointer "
+          time > 0 ? "cursor-not-allowed" : "cursor-pointer"
         }`}
       >
         Resend One-Time Password
