@@ -22,7 +22,7 @@ function Page() {
     if (!appLoading && !user?.token) {
       router.replace("/");
     }
-  });
+  }, [user?.token, appLoading]);
 
   const [activeTab, setActiveTab] = useState("setting");
   const handleActiveTab = (tab) => {

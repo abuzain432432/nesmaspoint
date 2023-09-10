@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { IoIosArrowBack } from "react-icons/io";
 import ProtectComponent from "../ProtectComponent";
+import Link from "next/link";
 
 function AdminDashboardSidebar({ onActiveTabe, activeTab }) {
   const router = useRouter();
@@ -24,15 +25,17 @@ function AdminDashboardSidebar({ onActiveTabe, activeTab }) {
             userRole={user.role}
             allowedRoles={["admin", "guide"]}
           >
-            <li
-              className={`bg-white hover:opacity-95   cursor-pointer lg:w-[80%] md:w-[75%] sm:w-[80%] mb-10 mx-auto rounded-full lg:h-[50px] sm:h-[40px] flex items-center px-4`}
-            >
-              <p className="flex justify-center w-full items-center xl:gap-6 md:gap-4 sm:gap-2">
-                <span className="uppercase text-[#016195] xl:text-base text-sm font-bold">
-                  Nesmaspoint
-                </span>
-              </p>
-            </li>
+            <Link href={"/"}>
+              <li
+                className={`bg-white hover:opacity-95   cursor-pointer lg:w-[80%] md:w-[75%] sm:w-[80%] mb-10 mx-auto rounded-full lg:h-[50px] sm:h-[40px] flex items-center px-4`}
+              >
+                <p className="flex justify-center w-full items-center xl:gap-6 md:gap-4 sm:gap-2">
+                  <span className="uppercase text-[#016195] xl:text-base text-sm font-bold">
+                    Nesmaspoint
+                  </span>
+                </p>
+              </li>
+            </Link>
             <li
               className={`active-sidebar-tab ${
                 activeTab === "ads-requests" && "active-tab"
