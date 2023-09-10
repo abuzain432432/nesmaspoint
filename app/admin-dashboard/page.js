@@ -14,8 +14,6 @@ function Page() {
   const { appLoading } = useContext(AppCtx);
   useEffect(() => {
     if (!appLoading && (!user?.token || user?.role === "user")) {
-      console.log(appLoading);
-      console.log("run code");
       router.replace("/");
     }
   }, [user?.role, user?.token, appLoading]);
