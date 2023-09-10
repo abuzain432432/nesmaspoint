@@ -1,8 +1,8 @@
 "use client";
-import { login, logout } from "@/redux/features/authSlice";
+
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -24,9 +24,10 @@ import { resetPagination } from "@/redux/features/paginationSlice";
 import { onSearchChange } from "@/redux/features/searchSlice";
 import { onModelToggle } from "@/redux/features/modelSlice";
 import { usePathname } from "next/navigation";
-
+import { AppCtx } from "@/app-context/AppContext";
 export default function Header() {
   const [search, setSearch] = useState("");
+  const { appLoading } = useContext(AppCtx);
   const [loginModal, setLoginModal] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
   const pathname = usePathname();
@@ -35,7 +36,6 @@ export default function Header() {
   const LIMIT = 8;
   const dispatch = useDispatch();
   const modelName = useSelector((state) => state.modelReducer);
-  const [pageBuilding, setPageBuilding] = useState(true);
   const router = useRouter();
   let cancel;
 
@@ -67,15 +67,6 @@ export default function Header() {
     }
     dispatch(onModelToggle(""));
   };
-
-  useEffect(() => {
-    setPageBuilding(false);
-    const user = localStorage.getItem("auth");
-    if (user) {
-      const parsedUser = JSON.parse(user);
-      dispatch(login(parsedUser));
-    }
-  }, []);
 
   const fetchData = async () => {
     if (cancel) {
@@ -123,6 +114,7 @@ export default function Header() {
       fetchData();
     }
   }, [page, search, pathname]);
+  console.log(user?.token, "token");
 
   return (
     <>
@@ -173,7 +165,7 @@ export default function Header() {
               </button>
             </div>
           )}
-          {pageBuilding ? (
+          {appLoading ? (
             <div className="flex  flex-1 items-center justify-end md:gap-4 gap-3 mr-2">
               <ProfilePlaceHolder button={true} />
               <ProfilePlaceHolder />
@@ -183,7 +175,7 @@ export default function Header() {
               <Link
                 href={user?.active ? "/sell" : `/otp/?email=${user?.email}`}
               >
-                <button className="bg-[#48AFFF]  sm:text-sm text-[12px]  text-white lg:px-6 md:px-4 sm:px-3 px-2.5  lg:py-2.5 md:py-2 py-1  rounded-md">
+                <button className="bg-[#48AFFF] hover:bg-[#48b0ffe9] sm:text-sm text-[12px]  text-white lg:px-6 md:px-4 sm:px-3 px-2.5  lg:py-2.5 md:py-2 py-1  rounded-md">
                   POST ADS
                 </button>
               </Link>
@@ -192,7 +184,7 @@ export default function Header() {
                 allowedRoles={["admin", "guide"]}
               >
                 <Link href={"/admin-dashboard"}>
-                  <button className="bg-[#48AFFF]  sm:text-sm text-[12px] uppercase  text-white lg:px-6 md:px-4 sm:px-3 px-2.5  lg:py-2.5 md:py-2 py-1  rounded-md">
+                  <button className="bg-[#48AFFF] hover:bg-[#48b0ffe9] sm:text-sm text-[12px] uppercase  text-white lg:px-6 md:px-4 sm:px-3 px-2.5  lg:py-2.5 md:py-2 py-1  rounded-md">
                     Dashboard
                   </button>
                 </Link>

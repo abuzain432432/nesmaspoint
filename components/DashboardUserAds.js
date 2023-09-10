@@ -11,6 +11,7 @@ function DashboardUserAds() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const user = useSelector((state) => state.authReducer);
+
   const handleDelete = (id) => {
     setData((preAds) => preAds?.filter((ad) => ad?._id !== id));
   };
@@ -71,7 +72,7 @@ function DashboardUserAds() {
           <h1 className="xl:text-3xl md:text-2xl text-xl md:mb-6 sm:mb-4 mb-2 text-center md:mt-10 mt-4 font-semibold w-full">
             Your ads
           </h1>
-          <div className="grid w-[90%] mx-auto items-start sm:grid-cols-2 xl:grid-cols-4 gap-6 ">
+          <div className="grid w-[95%] mx-auto items-start sm:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-6 ">
             {data?.map((ad) => (
               <AdsCard ad={ad} userAdd={true} onAdDelete={handleDelete} />
             ))}

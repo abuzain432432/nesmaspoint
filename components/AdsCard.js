@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 export default function AdsCard({ ad, userAdd = false, onAdDelete }) {
   const [deleting, setDeleting] = useState(false);
   const user = useSelector((state) => state.authReducer);
-
   const router = useRouter();
   const handleAdDelete = async (e) => {
     e.stopPropagation();
@@ -79,21 +78,19 @@ export default function AdsCard({ ad, userAdd = false, onAdDelete }) {
           fill={true}
         />
       </div>
-      <div className="bg-white px-1.5 pb-1.5 pt-4 relative flex justify-between items-center gap-2 flex-wrap">
-        {/* <button className="bg-white absolute right-1 -top-4 p-1.5 rounded-full shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
-          <AiOutlineHeart color="#48AFFF" size={20} />
-        </button> */}
-        <div>
-          <p className="text-sm line-clamp-1">{ad.title}</p>
+      <div className="bg-white px-2 py-4 relative ">
+        <div className="pb-2">
+          <p className="text-sm truncate">{ad.title}</p>
           <span className="text-[#48AFFF] text-[14px]">
             NGN {new Intl.NumberFormat().format(ad.price)}
           </span>
         </div>
+
         {userAdd && (
           <div
             disabled={deleting}
             onClick={handleAdDelete}
-            className={`flex   text-white px-6  rounded-lg ${
+            className={`flex justify-center mb-2 font-semibold text-white px-6  rounded-lg ${
               deleting ? "bg-red-300  py-0" : "bg-red-500 lg:py-2 py-1.5"
             }`}
           >
