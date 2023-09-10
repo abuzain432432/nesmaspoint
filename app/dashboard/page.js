@@ -28,6 +28,7 @@ function Page() {
   const handleActiveTab = (tab) => {
     setActiveTab(tab);
   };
+
   let content = <DashboardUserAds />;
   if (activeTab == "setting") {
     content = <DashboardSetting />;
