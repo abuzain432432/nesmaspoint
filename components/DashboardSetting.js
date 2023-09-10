@@ -145,7 +145,6 @@ function DashboardSetting() {
       );
     }
     if (confirmPassword !== newPassword) {
-      console.log("not same");
       return toast.error("New Password and Confirm Password must be same", {
         position: "top-right",
         autoClose: 5000,

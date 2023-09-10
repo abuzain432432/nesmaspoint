@@ -1,4 +1,5 @@
 import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
 import { useDispatch } from "react-redux";
@@ -10,6 +11,8 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import Loading from "./LoadingSpinner";
 import { useSelector } from "react-redux";
+import { IoIosArrowBack } from "react-icons/io";
+import ProtectComponent from "./ProtectComponent";
 
 function DashboardSidebar({ onActiveTabe, activeTab }) {
   const router = useRouter();
@@ -17,10 +20,6 @@ function DashboardSidebar({ onActiveTabe, activeTab }) {
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.authReducer);
 
-  let top = "top-[0px]";
-  if (activeTab === "setting") {
-    top = `top-[50px] mt-2`;
-  }
   const handleLogout = async () => {
     try {
       setLoading(true);
@@ -48,8 +47,8 @@ function DashboardSidebar({ onActiveTabe, activeTab }) {
   };
   return (
     <>
-      <aside className="md:block hidden gradient-sidebar 2xl:w-[350px] lg:w-[300px] md:w-[250px] sm:w-[230px] md:pt-14 sm:pt-10 text-white">
-        <ul className="flex  flex-col relative ">
+      <aside className="md:block hidden gradient-sidebar relative 2xl:w-[350px] lg:w-[300px] md:w-[250px] sm:w-[230px] md:pt-14 sm:pt-10 text-white">
+        <ul className="flex  flex-col relative">
           {user?.active && (
             <li
               className={`active-sidebar-tab ${
@@ -67,7 +66,6 @@ function DashboardSidebar({ onActiveTabe, activeTab }) {
               </p>
             </li>
           )}
-
           <li
             className={`active-sidebar-tab ${
               activeTab === "setting" && "active-tab"

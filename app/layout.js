@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-[#ebf2f7] `}>
         <Provider>
           <Header />
+
           <main>{children}</main>
           <Footer />
         </Provider>

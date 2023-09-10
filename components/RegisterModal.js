@@ -85,6 +85,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           lastName,
           token: data.token,
           photo: data.user.photo,
+          role: data.user.role,
           email,
         })
       );

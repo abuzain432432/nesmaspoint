@@ -53,3 +53,76 @@
 .clear-margin {
   margin-top: 0 !important;
 }
+.admin-table th,
+.admin-table .ant-table {
+  background-color: transparent !important;
+}
+.admin-table .ant-table-cell {
+  padding: 8px !important;
+}
+.admin-table .ant-table thead .ant-table-cell {
+  font-size: 20px !important;
+}
+
+.admin-table .ant-table tr td {
+  font-size: 18px !important;
+  color: #454545;
+}
+.ant-modal-content {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.report-modal .ant-form-item-label {
+  padding-bottom: 4px !important;
+}
+.admin-ad-status-model .ant-form-item-label,
+.admin-user-role-model .ant-form-item-label {
+  padding-bottom: 4px !important;
+  font-weight: 600;
+}
+.report-modal .report-btn,
+.admin-reports-model .delete-Ad-btn,
+.admin-ad-status-model .ad-status-btn,
+.admin-user-role-model .user-role-btn {
+  color: white;
+  height: auto !important;
+  border: 1px solid white;
+  padding: 6px 0;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+}
+.report-modal .report-btn {
+  background: #48afff !important;
+}
+.admin-reports-model .delete-Ad-btn {
+  background: #ae041b !important;
+}
+.admin-ad-status-model .ad-status-btn,
+.admin-user-role-model .user-role-btn {
+  background: #005a8c !important;
+}
+.report-modal .report-btn:hover,
+.admin-reports-model .delete-Ad-btn:hover,
+.admin-ad-status-model .ad-status-btn:hover,
+.admin-user-role-model .user-role-btn:hover {
+  color: white !important;
+  border-color: white !important;
+}
+.report-modal .report-btn:hover {
+  background: #48afff !important;
+}
+
+.admin-reports-model .delete-Ad-btn:hover {
+  background: #ae041be5 !important;
+}
+.admin-ad-status-model .ad-status-btn:hover,
+.admin-user-role-model .user-role-btn:hover {
+  background: #005b8cd9 !important;
+}
+
+.ant-table-cell {
+  background-color: #e1e4e6 !important;
+}
+.ant-table-cell:hover {
+  background-color: #e1e4e6 !important;
+}
