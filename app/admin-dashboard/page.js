@@ -13,11 +13,9 @@ function Page() {
   const router = useRouter();
   const { appLoading } = useContext(AppCtx);
   useEffect(() => {
-    console.log();
-    if (
-      !appLoading &&
-      (!user?.token || !(user?.role === "admin") || !(user?.role === "guide"))
-    ) {
+    if (!appLoading && (!user?.token || user?.role === "user")) {
+      console.log(appLoading);
+      console.log("run code");
       router.replace("/");
     }
   }, [user?.role, user?.token, appLoading]);
