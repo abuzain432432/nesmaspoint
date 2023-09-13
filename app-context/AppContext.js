@@ -29,13 +29,9 @@ export default function AppCtxProvider({ children }) {
           const { data } = await axios.get(`${URL}/api/v1/users/me`, {
             headers: requestHeaders,
           });
-          console.log(parsedUser, "parsedUser");
-          console.log(parsedUser?.token, "parsedUserToken");
-          console.log(data, "Response data");
 
           dispatch(login({ ...data?.data[0], token: parsedUser?.token }));
         } catch (err) {
-          console.log(err);
           router.push("/");
         }
       }

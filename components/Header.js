@@ -114,7 +114,6 @@ export default function Header() {
       fetchData();
     }
   }, [page, search, pathname]);
-  console.log(user?.token, "token");
 
   return (
     <>

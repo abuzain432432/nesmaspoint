@@ -1,15 +1,12 @@
 "use client";
 import Carousal from "@/components/Carousal";
 import { URL } from "@/config";
-import AdsData from "@/Data/AdsData";
 import { toast } from "react-toastify";
-import { usePathname } from "next/navigation";
 import { AiOutlineEye } from "react-icons/ai";
 import { MdVisibilityOff } from "react-icons/md";
-import { images } from "@/next.config";
 import axios from "axios";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiFillFlag } from "react-icons/ai";
 import { BsClock } from "react-icons/bs";
 import { MdLocationOn, MdPhoneInTalk } from "react-icons/md";
@@ -30,25 +27,36 @@ import { useDispatch } from "react-redux";
 import { onModelToggle } from "@/redux/features/modelSlice";
 import Loading from "@/components/Loading";
 import { Modal, Form, Input, Button } from "antd";
+import { AppCtx } from "@/app-context/AppContext";
 
 export default function Page({ params }) {
   const [ad, setAd] = useState({});
+  const { appLoading } = useContext(AppCtx);
   const [isReportModelActive, setIsReportModelActive] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const [sendingReport, setSendingReport] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const user = useSelector((state) => state?.authReducer);
   const router = useRouter();
   const dispatch = useDispatch();
   const pathname = location.href;
-
   const getAdData = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${URL}/api/v1/ads/${params?.id}`,);
+      const { data } = await axios.get(
+        `${URL}/api/v1/ads/administration/${params?.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        }
+      );
+      console.log(data.data[0]);
 
       setAd(data.data[0]);
     } catch (error) {
+      if (error?.response?.request?.status) router.back();
     } finally {
       setLoading(false);
     }
@@ -59,10 +67,10 @@ export default function Page({ params }) {
   };
 
   useEffect(() => {
-    getAdData();
-  }, []);
+    if (!appLoading) getAdData();
+  }, [appLoading]);
 
-  if (loading) {
+  if (loading || appLoading) {
     return (
       <div className="min-h-screen ">
         <Loading />

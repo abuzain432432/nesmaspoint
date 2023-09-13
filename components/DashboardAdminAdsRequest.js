@@ -7,6 +7,7 @@ import useAdminTable from "@/custom-hooks/useAdminTable";
 
 import AdminAdsStatusModal from "./admin/AdminAdsStatusModal";
 import AdminAdsReportsModal from "./admin/AdminAdsReportsModal";
+import Link from "next/link";
 const LIMIT = 10;
 function DashboardAdminAds() {
   const [reportModal, setReportModal] = useState(null);
@@ -81,13 +82,20 @@ function DashboardAdminAds() {
       title: "REMARKS",
       dataIndex: "reports",
       key: "reports",
-      render(_, rowData) {
+      render(reports, rowData) {
         return (
           <div
             onClick={() => setReportModal(rowData)}
             className="cursor-pointer"
           >
-            Click me
+            Reports
+            <span
+              className={`font-semibold ${
+                !reports?.length ? "" : "text-red-500"
+              }`}
+            >
+              {reports?.length}
+            </span>
           </div>
         );
       },
@@ -114,6 +122,18 @@ function DashboardAdminAds() {
               </>
             )}
           </div>
+        );
+      },
+    },
+    {
+      title: "Ad",
+      dataIndex: "active",
+      key: "active",
+      render(status, rowData) {
+        return (
+          <Link href={`/admin-dashboard/ad-details/${rowData._id}`}>
+            <span className="text-blue-700 hover:text-blue-500">view</span>
+          </Link>
         );
       },
     },
