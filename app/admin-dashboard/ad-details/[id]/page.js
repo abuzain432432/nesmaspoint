@@ -6,7 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { MdVisibilityOff } from "react-icons/md";
 import axios from "axios";
 import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { AiFillFlag } from "react-icons/ai";
 import { BsClock } from "react-icons/bs";
 import { MdLocationOn, MdPhoneInTalk } from "react-icons/md";
@@ -69,6 +69,11 @@ export default function Page({ params }) {
   useEffect(() => {
     if (!appLoading) getAdData();
   }, [appLoading]);
+  useEffect(() => {
+    if (!appLoading && user.role == "user") {
+      router.push("/");
+    }
+  }, [appLoading, user]);
 
   if (loading || appLoading) {
     return (

@@ -86,16 +86,12 @@ function DashboardAdminAds() {
         return (
           <div
             onClick={() => setReportModal(rowData)}
-            className="cursor-pointer"
+            className={`cursor-pointer ${
+              !reports?.length ? "" : "text-red-500"
+            }`}
           >
             Reports
-            <span
-              className={`font-semibold ${
-                !reports?.length ? "" : "text-red-500"
-              }`}
-            >
-              {reports?.length}
-            </span>
+            <span className={`font-semibold ml-2 `}>{reports?.length}</span>
           </div>
         );
       },

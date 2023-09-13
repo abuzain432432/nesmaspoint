@@ -59,7 +59,7 @@ function AdminAdsReportsModal({
         )}
 
         {Boolean(reportModal?.reports?.length) &&
-          adsReport?.map((report) => (
+          reportModal?.reports?.map((report) => (
             <li
               className="border-b flex flex-col  border-b-gray-300 py-2"
               key={report}
