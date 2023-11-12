@@ -1,10 +1,10 @@
-import { useState } from "react";
-import useAdminTable from "@/custom-hooks/useAdminTable";
-import { IoIosArrowDown } from "react-icons/io";
-import DashboardAdminTable from "./DashboardAdminTable";
-import AdminUserRoleModal from "./admin/AdminUserRoleModal";
+import { useState } from 'react';
+import useAdminTable from '@/custom-hooks/useAdminTable';
+import { IoIosArrowDown } from 'react-icons/io';
+import DashboardAdminTable from './DashboardAdminTable';
+import AdminUserRoleModal from './admin/AdminUserRoleModal';
 const LIMIT = 10;
-import { Tooltip } from "antd";
+import { Tooltip } from 'antd';
 function DashboardAdminUsers() {
   const [userRoleModal, setUserRoleModal] = useState(null);
   const {
@@ -18,18 +18,21 @@ function DashboardAdminUsers() {
     handleSort,
     setRefetchSignal,
     user,
-  } = useAdminTable("users", LIMIT);
+  } = useAdminTable('users', LIMIT);
   const columns = [
     {
-      title: "EMAIL",
-      dataIndex: "email",
-      key: "email",
-      width: "300px",
+      title: 'EMAIL',
+      dataIndex: 'email',
+      key: 'email',
+      width: '300px',
       render(email) {
         return (
           <div>
             {email?.length > 27 ? (
-              <Tooltip title={email}>{`${email.slice(0, 27)}...`}</Tooltip>
+              <Tooltip title={email}>{`${email.slice(
+                0,
+                27
+              )}...`}</Tooltip>
             ) : (
               email
             )}
@@ -38,42 +41,42 @@ function DashboardAdminUsers() {
       },
     },
     {
-      title: "FIRSTNAME",
-      dataIndex: "firstName",
-      key: "firstName",
+      title: 'FIRSTNAME',
+      dataIndex: 'firstName',
+      key: 'firstName',
     },
     {
-      title: "LASTNAME",
-      dataIndex: "lastName",
-      key: "lastName",
+      title: 'LASTNAME',
+      dataIndex: 'lastName',
+      key: 'lastName',
     },
     {
-      title: "ACCOUNT",
-      dataIndex: "isActive",
-      key: "isActive",
+      title: 'ACCOUNT',
+      dataIndex: 'active',
+      key: 'active',
       render(isActive) {
-        return <div>{isActive ? "active" : "inactive"}</div>;
+        return <div>{isActive ? 'active' : 'inactive'}</div>;
       },
     },
 
     {
-      title: "ROLE",
-      dataIndex: "role",
-      key: "role",
+      title: 'ROLE',
+      dataIndex: 'role',
+      key: 'role',
       render(role, rowData) {
         return (
           <div
             onClick={() => setUserRoleModal(rowData)}
             className={`py-1 w-fit cursor-pointer rounded-full first-letter:uppercase ${
-              role === "admin"
-                ? "bg-[#67DB65]  px-4"
-                : role === "user"
-                ? "bg-[#DDD73D]  px-6"
-                : "bg-[#F99259]  px-5"
+              role === 'admin'
+                ? 'bg-[#67DB65]  px-4'
+                : role === 'user'
+                ? 'bg-[#DDD73D]  px-6'
+                : 'bg-[#F99259]  px-5'
             }`}
           >
-            <div className="flex items-center ">
-              <span className="first-letter:uppercase">{role}</span>
+            <div className='flex items-center '>
+              <span className='first-letter:uppercase'>{role}</span>
               <IoIosArrowDown />
             </div>
           </div>
@@ -94,7 +97,7 @@ function DashboardAdminUsers() {
         onUserRoleModalCancel={handleUserRoleModalCancel}
         user={user}
       />
-      <div className="bg-[#d9d9d98b] flex-1">
+      <div className='bg-[#d9d9d98b] flex-1'>
         <DashboardAdminTable
           LIMIT={LIMIT}
           query={query}
@@ -105,7 +108,7 @@ function DashboardAdminUsers() {
           totalPages={totalPages}
           handlePaginationChange={handlePaginationChange}
           columns={columns}
-          parms={"users"}
+          parms={'users'}
         />
       </div>
     </>

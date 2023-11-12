@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { Tooltip } from "antd";
-import { IoIosArrowDown } from "react-icons/io";
+import { useState } from 'react';
+import { Tooltip } from 'antd';
+import { IoIosArrowDown } from 'react-icons/io';
 
-import DashboardAdminTable from "./DashboardAdminTable";
-import useAdminTable from "@/custom-hooks/useAdminTable";
+import DashboardAdminTable from './DashboardAdminTable';
+import useAdminTable from '@/custom-hooks/useAdminTable';
 
-import AdminAdsStatusModal from "./admin/AdminAdsStatusModal";
-import AdminAdsReportsModal from "./admin/AdminAdsReportsModal";
-import Link from "next/link";
+import AdminAdsStatusModal from './admin/AdminAdsStatusModal';
+import AdminAdsReportsModal from './admin/AdminAdsReportsModal';
+import Link from 'next/link';
 const LIMIT = 10;
 function DashboardAdminAds() {
   const [reportModal, setReportModal] = useState(null);
@@ -23,7 +23,7 @@ function DashboardAdminAds() {
     handleSort,
     setRefetchSignal,
     user,
-  } = useAdminTable("ads", LIMIT);
+  } = useAdminTable('ads', LIMIT);
 
   const handleReportsModalCancel = () => {
     setReportModal(null);
@@ -33,27 +33,30 @@ function DashboardAdminAds() {
   };
   const columns = [
     {
-      title: "TITLE",
-      dataIndex: "title",
-      width: "300px",
-      key: "title",
+      title: 'TITLE',
+      dataIndex: 'title',
+      width: '300px',
+      key: 'title',
       render(title) {
         return (
           <div>
             {title?.length < 27 ? (
               title
             ) : (
-              <Tooltip title={title}>{`${title.slice(0, 28)}...`}</Tooltip>
+              <Tooltip title={title}>{`${title.slice(
+                0,
+                28
+              )}...`}</Tooltip>
             )}
           </div>
         );
       },
     },
     {
-      title: "USER",
-      dataIndex: "user",
-      key: "user",
-      width: "300px",
+      title: 'USER',
+      dataIndex: 'user',
+      key: 'user',
+      width: '300px',
       render(user) {
         return (
           <div>
@@ -69,43 +72,47 @@ function DashboardAdminAds() {
       },
     },
     {
-      title: "CATEGORY",
-      dataIndex: "category",
-      key: "category",
+      title: 'CATEGORY',
+      dataIndex: 'category',
+      key: 'category',
     },
     {
-      title: "PRICE",
-      dataIndex: "price",
-      key: "price",
+      title: 'PRICE',
+      dataIndex: 'price',
+      key: 'price',
     },
     {
-      title: "REMARKS",
-      dataIndex: "reports",
-      key: "reports",
+      title: 'REMARKS',
+      dataIndex: 'reports',
+      key: 'reports',
       render(reports, rowData) {
         return (
           <div
             onClick={() => setReportModal(rowData)}
-            className={`cursor-pointer ${
-              !reports?.length ? "" : "text-red-500"
-            }`}
+            className='cursor-pointer'
           >
             Reports
-            <span className={`font-semibold ml-2 `}>{reports?.length}</span>
+            <span
+              className={`font-semibold ml-2 ${
+                !reports?.length ? '' : 'text-red-500'
+              }`}
+            >
+              {reports?.length}
+            </span>
           </div>
         );
       },
     },
     {
-      title: "STATUS",
-      dataIndex: "active",
-      key: "active",
+      title: 'STATUS',
+      dataIndex: 'active',
+      key: 'active',
       render(status, rowData) {
         return (
           <div
             onClick={() => setAdStatusModel(rowData)}
             className={`w-fit cursor-pointer  py-1 rounded-full flex items-center justify-center first-letter:uppercase ${
-              !status ? "bg-[#DDD73D] px-4" : "bg-[#40DD3D] px-6"
+              !status ? 'bg-[#DDD73D] px-4' : 'bg-[#40DD3D] px-6'
             }`}
           >
             {status ? (
@@ -122,13 +129,15 @@ function DashboardAdminAds() {
       },
     },
     {
-      title: "Ad",
-      dataIndex: "active",
-      key: "active",
+      title: 'Ad',
+      dataIndex: 'active',
+      key: 'active',
       render(status, rowData) {
         return (
           <Link href={`/admin-dashboard/ad-details/${rowData._id}`}>
-            <span className="text-blue-700 hover:text-blue-500">view</span>
+            <span className='text-blue-700 hover:text-blue-500'>
+              view
+            </span>
           </Link>
         );
       },
@@ -152,7 +161,7 @@ function DashboardAdminAds() {
         onReportsModalCancel={handleReportsModalCancel}
         setRefetchSignal={setRefetchSignal}
       />
-      <div className="bg-[#d9d9d98b] flex-1">
+      <div className='bg-[#d9d9d98b] flex-1'>
         <DashboardAdminTable
           LIMIT={LIMIT}
           query={query}
@@ -163,7 +172,7 @@ function DashboardAdminAds() {
           totalPages={totalPages}
           handlePaginationChange={handlePaginationChange}
           columns={columns}
-          parms={"ads"}
+          parms={'ads'}
         />
         ;
       </div>

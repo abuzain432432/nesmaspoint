@@ -25,7 +25,7 @@ function useAdminTable(parms, LIMIT) {
       try {
         setLoading(true);
         let fetchURL = `${URL}/api/v1/ads/administration?page=${page}&searchTerm=${query}&limit=${LIMIT}${
-          sort ? "&sort=active" : "&sort=-reports"
+          sort ? "&sort=active" : ""
         }`;
         if (parms === "users") {
           fetchURL = `${URL}/api/v1/users/administration?page=${page}&searchTerm=${query}&limit=${LIMIT}${
